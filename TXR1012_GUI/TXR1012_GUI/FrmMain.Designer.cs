@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.端口ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cOM口设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -45,12 +46,15 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txt_mASet = new System.Windows.Forms.TextBox();
             this.btn_mASet = new System.Windows.Forms.Button();
+            this.aGauge2 = new MyControls.AGauge();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.aGauge2 = new MyControls.AGauge();
+            this.skinButton1 = new CCWin.SkinControl.SkinButton();
+            this.skinTrackBar1 = new CCWin.SkinControl.SkinTrackBar();
             this.menuStrip1.SuspendLayout();
             this.groupBox_kV.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.skinTrackBar1)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -303,30 +307,6 @@
             this.btn_mASet.Text = "电流设定";
             this.btn_mASet.UseVisualStyleBackColor = true;
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("宋体", 22.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label3.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.label3.Location = new System.Drawing.Point(161, 44);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(55, 38);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "mA";
-            // 
-            // label4
-            // 
-            this.label4.BackColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.label4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label4.Font = new System.Drawing.Font("Cambria", 22.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.GreenYellow;
-            this.label4.Location = new System.Drawing.Point(16, 37);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(139, 50);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "12.45";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // aGauge2
             // 
             this.aGauge2.BaseArcColor = System.Drawing.Color.Gray;
@@ -428,6 +408,55 @@
             this.aGauge2.TabIndex = 4;
             this.aGauge2.Value = 0F;
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("宋体", 22.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label3.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.label3.Location = new System.Drawing.Point(161, 44);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(55, 38);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "mA";
+            // 
+            // label4
+            // 
+            this.label4.BackColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.label4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label4.Font = new System.Drawing.Font("Cambria", 22.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.GreenYellow;
+            this.label4.Location = new System.Drawing.Point(16, 37);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(139, 50);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "12.45";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // skinButton1
+            // 
+            this.skinButton1.BackColor = System.Drawing.Color.Transparent;
+            this.skinButton1.ControlState = CCWin.SkinClass.ControlState.Normal;
+            this.skinButton1.DownBack = null;
+            this.skinButton1.Location = new System.Drawing.Point(432, 429);
+            this.skinButton1.MouseBack = null;
+            this.skinButton1.Name = "skinButton1";
+            this.skinButton1.NormlBack = null;
+            this.skinButton1.Size = new System.Drawing.Size(75, 23);
+            this.skinButton1.TabIndex = 4;
+            this.skinButton1.Text = "skinButton1";
+            this.skinButton1.UseVisualStyleBackColor = false;
+            // 
+            // skinTrackBar1
+            // 
+            this.skinTrackBar1.BackColor = System.Drawing.Color.Transparent;
+            this.skinTrackBar1.Bar = null;
+            this.skinTrackBar1.BarStyle = CCWin.SkinControl.HSLTrackBarStyle.Opacity;
+            this.skinTrackBar1.Location = new System.Drawing.Point(133, 410);
+            this.skinTrackBar1.Name = "skinTrackBar1";
+            this.skinTrackBar1.Size = new System.Drawing.Size(243, 56);
+            this.skinTrackBar1.TabIndex = 5;
+            this.skinTrackBar1.Track = null;
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -435,6 +464,8 @@
             this.AutoSize = true;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(594, 652);
+            this.Controls.Add(this.skinTrackBar1);
+            this.Controls.Add(this.skinButton1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox_kV);
             this.Controls.Add(this.statusStrip1);
@@ -448,6 +479,7 @@
             this.groupBox_kV.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.skinTrackBar1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -475,6 +507,8 @@
         private System.Windows.Forms.Label label4;
         private MyControls.AGauge aGauge1;
         private MyControls.AGauge aGauge2;
+        private CCWin.SkinControl.SkinButton skinButton1;
+        private CCWin.SkinControl.SkinTrackBar skinTrackBar1;
     }
 }
 
