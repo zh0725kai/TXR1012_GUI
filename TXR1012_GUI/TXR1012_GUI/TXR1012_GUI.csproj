@@ -35,6 +35,8 @@
     <Reference Include="CSkin">
       <HintPath>..\..\..\..\CSkin 16.1.14.1\CSkin 16.1.14.1\CSkin 4.0\CSkin.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Microsoft.VisualBasic.PowerPacks, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="MyControls">
       <HintPath>..\..\..\MyControls\MyControls\MyControls.dll</HintPath>
     </Reference>

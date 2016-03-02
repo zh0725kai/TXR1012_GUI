@@ -18,3 +18,5 @@ F:\360云盘\learn\softwareLearn\vs\GitHub\TXR1012_GUI\TXR1012_GUI\TXR1012_GUI\o
 F:\360云盘\learn\softwareLearn\vs\GitHub\TXR1012_GUI\TXR1012_GUI\TXR1012_GUI\bin\Debug\MyControls.dll
 F:\360云盘\learn\softwareLearn\vs\GitHub\TXR1012_GUI\TXR1012_GUI\TXR1012_GUI\bin\Debug\CSkin.dll
 F:\360云盘\learn\softwareLearn\vs\GitHub\TXR1012_GUI\TXR1012_GUI\TXR1012_GUI\bin\Debug\CSkin.xml
+F:\360云盘\learn\softwareLearn\vs\GitHub\TXR1012_GUI\TXR1012_GUI\TXR1012_GUI\bin\Debug\Microsoft.VisualBasic.PowerPacks.dll
+F:\360云盘\learn\softwareLearn\vs\GitHub\TXR1012_GUI\TXR1012_GUI\TXR1012_GUI\bin\Debug\zh-Hans\Microsoft.VisualBasic.PowerPacks.resources.dll
