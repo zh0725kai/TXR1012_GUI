@@ -20,3 +20,8 @@ F:\360云盘\learn\softwareLearn\vs\GitHub\TXR1012_GUI\TXR1012_GUI\TXR1012_GUI\b
 F:\360云盘\learn\softwareLearn\vs\GitHub\TXR1012_GUI\TXR1012_GUI\TXR1012_GUI\bin\Debug\CSkin.xml
 F:\360云盘\learn\softwareLearn\vs\GitHub\TXR1012_GUI\TXR1012_GUI\TXR1012_GUI\bin\Debug\Microsoft.VisualBasic.PowerPacks.dll
 F:\360云盘\learn\softwareLearn\vs\GitHub\TXR1012_GUI\TXR1012_GUI\TXR1012_GUI\bin\Debug\zh-Hans\Microsoft.VisualBasic.PowerPacks.resources.dll
+F:\360云盘\learn\softwareLearn\vs\GitHub\TXR1012_GUI\TXR1012_GUI\TXR1012_GUI\bin\Debug\FtdAdapter.dll
+F:\360云盘\learn\softwareLearn\vs\GitHub\TXR1012_GUI\TXR1012_GUI\TXR1012_GUI\bin\Debug\log4net.dll
+F:\360云盘\learn\softwareLearn\vs\GitHub\TXR1012_GUI\TXR1012_GUI\TXR1012_GUI\bin\Debug\Modbus.dll
+F:\360云盘\learn\softwareLearn\vs\GitHub\TXR1012_GUI\TXR1012_GUI\TXR1012_GUI\bin\Debug\Modbus.Extensions.dll
+F:\360云盘\learn\softwareLearn\vs\GitHub\TXR1012_GUI\TXR1012_GUI\TXR1012_GUI\bin\Debug\Unme.Common.dll

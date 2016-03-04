@@ -35,8 +35,20 @@
     <Reference Include="CSkin">
       <HintPath>..\..\..\..\CSkin 16.1.14.1\CSkin 16.1.14.1\CSkin 4.0\CSkin.dll</HintPath>
     </Reference>
+    <Reference Include="FtdAdapter">
+      <HintPath>..\..\..\..\..\ModBus\NModbus_net-3.5_1.11.0.0-source\bin\net\FtdAdapter.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\..\..\..\..\ModBus\NModbus_net-3.5_1.11.0.0-source\bin\net\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="Microsoft.VisualBasic.PowerPacks, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Modbus">
+      <HintPath>..\..\..\..\..\ModBus\NModbus_net-3.5_1.11.0.0-source\bin\net\Modbus.dll</HintPath>
+    </Reference>
+    <Reference Include="Modbus.Extensions">
+      <HintPath>..\..\..\..\..\ModBus\NModbus_net-3.5_1.11.0.0-source\bin\net\Modbus.Extensions.dll</HintPath>
+    </Reference>
     <Reference Include="MyControls">
       <HintPath>..\..\..\MyControls\MyControls\MyControls.dll</HintPath>
     </Reference>
@@ -51,6 +63,9 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="Unme.Common">
+      <HintPath>..\..\..\..\..\ModBus\NModbus_net-3.5_1.11.0.0-source\bin\net\Unme.Common.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FrmMain.cs">
@@ -59,6 +74,8 @@
     <Compile Include="FrmMain.Designer.cs">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="ModbusDataCs.cs" />
+    <Compile Include="PowerSupplyTypeCs.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FrmMain.resx">

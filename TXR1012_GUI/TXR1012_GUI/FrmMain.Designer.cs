@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.端口ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cOM口设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -41,50 +42,58 @@
             this.aGauge1 = new MyControls.AGauge();
             this.btn_kVSet = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.label_kV = new System.Windows.Forms.Label();
             this.groupBox_mA = new System.Windows.Forms.GroupBox();
             this.txt_mASet = new System.Windows.Forms.TextBox();
             this.btn_mASet = new System.Windows.Forms.Button();
             this.aGauge2 = new MyControls.AGauge();
             this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.label_mA = new System.Windows.Forms.Label();
             this.groupBox_FilPreHeat = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.txt_FilPreHeat = new System.Windows.Forms.TextBox();
+            this.label_Filment = new System.Windows.Forms.Label();
+            this.btn_FilPreHeatSet = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
+            this.label_FilLimitHiden = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.txt_FilLimit = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
+            this.trackBar_FilLimitSet = new System.Windows.Forms.TrackBar();
+            this.btn_FilLimitSet = new System.Windows.Forms.Button();
             this.label12 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label18 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
+            this.label_InterLockError = new System.Windows.Forms.Label();
+            this.label_InterLockOK = new System.Windows.Forms.Label();
+            this.label_StateError = new System.Windows.Forms.Label();
+            this.label_StateOK = new System.Windows.Forms.Label();
+            this.label_Temp = new System.Windows.Forms.Label();
+            this.label_Power = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.button7 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
+            this.btn_OpenHV = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btn_CloseHV = new System.Windows.Forms.Button();
             this.shapeContainer1 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
-            this.ovalShape1 = new Microsoft.VisualBasic.PowerPacks.OvalShape();
-            this.ovalShape2 = new Microsoft.VisualBasic.PowerPacks.OvalShape();
+            this.ovalShape_CloseHV = new Microsoft.VisualBasic.PowerPacks.OvalShape();
+            this.ovalShape_OpenHV = new Microsoft.VisualBasic.PowerPacks.OvalShape();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.menuStrip1.SuspendLayout();
             this.groupBox_kV.SuspendLayout();
             this.groupBox_mA.SuspendLayout();
             this.groupBox_FilPreHeat.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar_FilLimitSet)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.SuspendLayout();
@@ -100,7 +109,7 @@
             this.退出QToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(707, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(633, 28);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -146,9 +155,9 @@
             // statusStrip1
             // 
             this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.statusStrip1.Location = new System.Drawing.Point(0, 613);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 629);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(707, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(633, 22);
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -158,8 +167,8 @@
             this.groupBox_kV.Controls.Add(this.aGauge1);
             this.groupBox_kV.Controls.Add(this.btn_kVSet);
             this.groupBox_kV.Controls.Add(this.label2);
-            this.groupBox_kV.Controls.Add(this.label1);
-            this.groupBox_kV.Location = new System.Drawing.Point(21, 52);
+            this.groupBox_kV.Controls.Add(this.label_kV);
+            this.groupBox_kV.Location = new System.Drawing.Point(19, 45);
             this.groupBox_kV.Name = "groupBox_kV";
             this.groupBox_kV.Size = new System.Drawing.Size(223, 352);
             this.groupBox_kV.TabIndex = 3;
@@ -295,18 +304,18 @@
             this.label2.TabIndex = 4;
             this.label2.Text = "kV";
             // 
-            // label1
+            // label_kV
             // 
-            this.label1.BackColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.label1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label1.Font = new System.Drawing.Font("Cambria", 22.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.GreenYellow;
-            this.label1.Location = new System.Drawing.Point(16, 37);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(139, 50);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "12.45";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label_kV.BackColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.label_kV.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label_kV.Font = new System.Drawing.Font("Cambria", 22.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_kV.ForeColor = System.Drawing.Color.GreenYellow;
+            this.label_kV.Location = new System.Drawing.Point(16, 37);
+            this.label_kV.Name = "label_kV";
+            this.label_kV.Size = new System.Drawing.Size(139, 50);
+            this.label_kV.TabIndex = 3;
+            this.label_kV.Text = "12.45";
+            this.label_kV.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // groupBox_mA
             // 
@@ -314,8 +323,8 @@
             this.groupBox_mA.Controls.Add(this.btn_mASet);
             this.groupBox_mA.Controls.Add(this.aGauge2);
             this.groupBox_mA.Controls.Add(this.label3);
-            this.groupBox_mA.Controls.Add(this.label4);
-            this.groupBox_mA.Location = new System.Drawing.Point(264, 52);
+            this.groupBox_mA.Controls.Add(this.label_mA);
+            this.groupBox_mA.Location = new System.Drawing.Point(248, 45);
             this.groupBox_mA.Name = "groupBox_mA";
             this.groupBox_mA.Size = new System.Drawing.Size(223, 352);
             this.groupBox_mA.TabIndex = 3;
@@ -452,71 +461,71 @@
             this.label3.TabIndex = 4;
             this.label3.Text = "mA";
             // 
-            // label4
+            // label_mA
             // 
-            this.label4.BackColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.label4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label4.Font = new System.Drawing.Font("Cambria", 22.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.GreenYellow;
-            this.label4.Location = new System.Drawing.Point(16, 37);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(139, 50);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "12.45";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label_mA.BackColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.label_mA.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label_mA.Font = new System.Drawing.Font("Cambria", 22.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_mA.ForeColor = System.Drawing.Color.GreenYellow;
+            this.label_mA.Location = new System.Drawing.Point(16, 37);
+            this.label_mA.Name = "label_mA";
+            this.label_mA.Size = new System.Drawing.Size(139, 50);
+            this.label_mA.TabIndex = 3;
+            this.label_mA.Text = "12.45";
+            this.label_mA.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // groupBox_FilPreHeat
             // 
-            this.groupBox_FilPreHeat.Controls.Add(this.textBox1);
-            this.groupBox_FilPreHeat.Controls.Add(this.label5);
-            this.groupBox_FilPreHeat.Controls.Add(this.button1);
+            this.groupBox_FilPreHeat.Controls.Add(this.txt_FilPreHeat);
+            this.groupBox_FilPreHeat.Controls.Add(this.label_Filment);
+            this.groupBox_FilPreHeat.Controls.Add(this.btn_FilPreHeatSet);
             this.groupBox_FilPreHeat.Controls.Add(this.label7);
             this.groupBox_FilPreHeat.Controls.Add(this.label8);
             this.groupBox_FilPreHeat.Controls.Add(this.label6);
-            this.groupBox_FilPreHeat.Location = new System.Drawing.Point(21, 422);
+            this.groupBox_FilPreHeat.Location = new System.Drawing.Point(19, 403);
             this.groupBox_FilPreHeat.Name = "groupBox_FilPreHeat";
-            this.groupBox_FilPreHeat.Size = new System.Drawing.Size(223, 156);
+            this.groupBox_FilPreHeat.Size = new System.Drawing.Size(410, 98);
             this.groupBox_FilPreHeat.TabIndex = 4;
             this.groupBox_FilPreHeat.TabStop = false;
             this.groupBox_FilPreHeat.Text = "灯丝预热";
             // 
-            // textBox1
+            // txt_FilPreHeat
             // 
-            this.textBox1.Location = new System.Drawing.Point(6, 97);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(63, 25);
-            this.textBox1.TabIndex = 5;
-            this.textBox1.Text = "1";
-            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txt_FilPreHeat.Location = new System.Drawing.Point(206, 32);
+            this.txt_FilPreHeat.Name = "txt_FilPreHeat";
+            this.txt_FilPreHeat.Size = new System.Drawing.Size(51, 25);
+            this.txt_FilPreHeat.TabIndex = 5;
+            this.txt_FilPreHeat.Text = "1";
+            this.txt_FilPreHeat.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // label5
+            // label_Filment
             // 
-            this.label5.BackColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.label5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label5.Font = new System.Drawing.Font("Cambria", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.GreenYellow;
-            this.label5.Location = new System.Drawing.Point(30, 30);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(103, 45);
-            this.label5.TabIndex = 3;
-            this.label5.Text = "12.45";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label_Filment.BackColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.label_Filment.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label_Filment.Font = new System.Drawing.Font("Cambria", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_Filment.ForeColor = System.Drawing.Color.GreenYellow;
+            this.label_Filment.Location = new System.Drawing.Point(14, 30);
+            this.label_Filment.Name = "label_Filment";
+            this.label_Filment.Size = new System.Drawing.Size(103, 45);
+            this.label_Filment.TabIndex = 3;
+            this.label_Filment.Text = "12.45";
+            this.label_Filment.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // button1
+            // btn_FilPreHeatSet
             // 
-            this.button1.Location = new System.Drawing.Point(110, 93);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(106, 34);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "灯丝预热设定";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btn_FilPreHeatSet.Location = new System.Drawing.Point(289, 28);
+            this.btn_FilPreHeatSet.Name = "btn_FilPreHeatSet";
+            this.btn_FilPreHeatSet.Size = new System.Drawing.Size(106, 34);
+            this.btn_FilPreHeatSet.TabIndex = 6;
+            this.btn_FilPreHeatSet.Text = "灯丝预热设定";
+            this.btn_FilPreHeatSet.UseVisualStyleBackColor = true;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("宋体", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label7.ForeColor = System.Drawing.Color.Black;
-            this.label7.Location = new System.Drawing.Point(139, 39);
+            this.label7.Location = new System.Drawing.Point(123, 39);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(26, 28);
             this.label7.TabIndex = 4;
@@ -527,7 +536,7 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("宋体", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label8.ForeColor = System.Drawing.Color.Gray;
-            this.label8.Location = new System.Drawing.Point(16, 139);
+            this.label8.Location = new System.Drawing.Point(206, 71);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(189, 14);
             this.label8.TabIndex = 4;
@@ -538,7 +547,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label6.ForeColor = System.Drawing.Color.Black;
-            this.label6.Location = new System.Drawing.Point(75, 99);
+            this.label6.Location = new System.Drawing.Point(263, 34);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(19, 20);
             this.label6.TabIndex = 4;
@@ -546,78 +555,102 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.textBox2);
-            this.groupBox1.Controls.Add(this.label9);
-            this.groupBox1.Controls.Add(this.button2);
+            this.groupBox1.Controls.Add(this.label_FilLimitHiden);
             this.groupBox1.Controls.Add(this.label10);
+            this.groupBox1.Controls.Add(this.label23);
+            this.groupBox1.Controls.Add(this.label9);
+            this.groupBox1.Controls.Add(this.txt_FilLimit);
             this.groupBox1.Controls.Add(this.label11);
+            this.groupBox1.Controls.Add(this.trackBar_FilLimitSet);
+            this.groupBox1.Controls.Add(this.btn_FilLimitSet);
             this.groupBox1.Controls.Add(this.label12);
-            this.groupBox1.Location = new System.Drawing.Point(264, 422);
+            this.groupBox1.Location = new System.Drawing.Point(19, 507);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(223, 156);
+            this.groupBox1.Size = new System.Drawing.Size(410, 92);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "灯丝限幅";
             // 
-            // textBox2
+            // label_FilLimitHiden
             // 
-            this.textBox2.Location = new System.Drawing.Point(6, 97);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(63, 25);
-            this.textBox2.TabIndex = 5;
-            this.textBox2.Text = "1";
-            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label9
-            // 
-            this.label9.BackColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.label9.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label9.Font = new System.Drawing.Font("Cambria", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.ForeColor = System.Drawing.Color.GreenYellow;
-            this.label9.Location = new System.Drawing.Point(30, 30);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(103, 45);
-            this.label9.TabIndex = 3;
-            this.label9.Text = "12.45";
-            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(110, 93);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(106, 34);
-            this.button2.TabIndex = 6;
-            this.button2.Text = "灯丝限幅设定";
-            this.button2.UseVisualStyleBackColor = true;
+            this.label_FilLimitHiden.AutoSize = true;
+            this.label_FilLimitHiden.Location = new System.Drawing.Point(79, 11);
+            this.label_FilLimitHiden.Name = "label_FilLimitHiden";
+            this.label_FilLimitHiden.Size = new System.Drawing.Size(39, 15);
+            this.label_FilLimitHiden.TabIndex = 11;
+            this.label_FilLimitHiden.Text = "3.1A";
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("宋体", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label10.ForeColor = System.Drawing.Color.Black;
-            this.label10.Location = new System.Drawing.Point(139, 39);
+            this.label10.Location = new System.Drawing.Point(140, 69);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(26, 28);
-            this.label10.TabIndex = 4;
-            this.label10.Text = "A";
+            this.label10.Size = new System.Drawing.Size(23, 15);
+            this.label10.TabIndex = 10;
+            this.label10.Text = "4A";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(79, 69);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(23, 15);
+            this.label23.TabIndex = 9;
+            this.label23.Text = "2A";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(13, 69);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(23, 15);
+            this.label9.TabIndex = 8;
+            this.label9.Text = "0A";
+            // 
+            // txt_FilLimit
+            // 
+            this.txt_FilLimit.Location = new System.Drawing.Point(206, 28);
+            this.txt_FilLimit.Name = "txt_FilLimit";
+            this.txt_FilLimit.Size = new System.Drawing.Size(51, 25);
+            this.txt_FilLimit.TabIndex = 5;
+            this.txt_FilLimit.Text = "2.5";
+            this.txt_FilLimit.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label11
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("宋体", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label11.ForeColor = System.Drawing.Color.Gray;
-            this.label11.Location = new System.Drawing.Point(2, 139);
+            this.label11.Location = new System.Drawing.Point(178, 65);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(217, 14);
             this.label11.TabIndex = 4;
             this.label11.Text = "标准最大设定3.5A，建议设定2.5A";
+            // 
+            // trackBar_FilLimitSet
+            // 
+            this.trackBar_FilLimitSet.Location = new System.Drawing.Point(6, 29);
+            this.trackBar_FilLimitSet.Maximum = 40;
+            this.trackBar_FilLimitSet.Name = "trackBar_FilLimitSet";
+            this.trackBar_FilLimitSet.Size = new System.Drawing.Size(161, 56);
+            this.trackBar_FilLimitSet.TabIndex = 7;
+            this.trackBar_FilLimitSet.TickFrequency = 10;
+            // 
+            // btn_FilLimitSet
+            // 
+            this.btn_FilLimitSet.Location = new System.Drawing.Point(289, 24);
+            this.btn_FilLimitSet.Name = "btn_FilLimitSet";
+            this.btn_FilLimitSet.Size = new System.Drawing.Size(106, 34);
+            this.btn_FilLimitSet.TabIndex = 6;
+            this.btn_FilLimitSet.Text = "灯丝限幅设定";
+            this.btn_FilLimitSet.UseVisualStyleBackColor = true;
             // 
             // label12
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label12.ForeColor = System.Drawing.Color.Black;
-            this.label12.Location = new System.Drawing.Point(75, 99);
+            this.label12.Location = new System.Drawing.Point(264, 30);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(19, 20);
             this.label12.TabIndex = 4;
@@ -629,15 +662,15 @@
             this.groupBox2.Controls.Add(this.label17);
             this.groupBox2.Controls.Add(this.label16);
             this.groupBox2.Controls.Add(this.label15);
-            this.groupBox2.Controls.Add(this.label22);
-            this.groupBox2.Controls.Add(this.label20);
-            this.groupBox2.Controls.Add(this.label21);
-            this.groupBox2.Controls.Add(this.label19);
-            this.groupBox2.Controls.Add(this.label14);
-            this.groupBox2.Controls.Add(this.label13);
-            this.groupBox2.Location = new System.Drawing.Point(493, 422);
+            this.groupBox2.Controls.Add(this.label_InterLockError);
+            this.groupBox2.Controls.Add(this.label_InterLockOK);
+            this.groupBox2.Controls.Add(this.label_StateError);
+            this.groupBox2.Controls.Add(this.label_StateOK);
+            this.groupBox2.Controls.Add(this.label_Temp);
+            this.groupBox2.Controls.Add(this.label_Power);
+            this.groupBox2.Location = new System.Drawing.Point(435, 403);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(173, 156);
+            this.groupBox2.Size = new System.Drawing.Size(173, 196);
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "系统状态";
@@ -645,7 +678,7 @@
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(6, 126);
+            this.label18.Location = new System.Drawing.Point(6, 151);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(75, 15);
             this.label18.TabIndex = 4;
@@ -654,16 +687,16 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(6, 98);
+            this.label17.Location = new System.Drawing.Point(6, 123);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(75, 15);
             this.label17.TabIndex = 4;
-            this.label17.Text = "故障指示:";
+            this.label17.Text = "运行状态:";
             // 
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(6, 59);
+            this.label16.Location = new System.Drawing.Point(6, 67);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(75, 15);
             this.label16.TabIndex = 4;
@@ -672,125 +705,145 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(6, 30);
+            this.label15.Location = new System.Drawing.Point(6, 38);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(75, 15);
             this.label15.TabIndex = 4;
             this.label15.Text = "电源电压:";
             // 
-            // label22
+            // label_InterLockError
             // 
-            this.label22.BackColor = System.Drawing.Color.Red;
-            this.label22.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label22.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.ForeColor = System.Drawing.Color.GreenYellow;
-            this.label22.Location = new System.Drawing.Point(136, 119);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(26, 26);
-            this.label22.TabIndex = 3;
-            this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label_InterLockError.BackColor = System.Drawing.Color.Red;
+            this.label_InterLockError.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label_InterLockError.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_InterLockError.ForeColor = System.Drawing.Color.GreenYellow;
+            this.label_InterLockError.Location = new System.Drawing.Point(136, 144);
+            this.label_InterLockError.Name = "label_InterLockError";
+            this.label_InterLockError.Size = new System.Drawing.Size(26, 26);
+            this.label_InterLockError.TabIndex = 3;
+            this.label_InterLockError.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label20
+            // label_InterLockOK
             // 
-            this.label20.BackColor = System.Drawing.Color.Chartreuse;
-            this.label20.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label20.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.ForeColor = System.Drawing.Color.GreenYellow;
-            this.label20.Location = new System.Drawing.Point(87, 119);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(26, 26);
-            this.label20.TabIndex = 3;
-            this.label20.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label_InterLockOK.BackColor = System.Drawing.Color.Chartreuse;
+            this.label_InterLockOK.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label_InterLockOK.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_InterLockOK.ForeColor = System.Drawing.Color.GreenYellow;
+            this.label_InterLockOK.Location = new System.Drawing.Point(87, 144);
+            this.label_InterLockOK.Name = "label_InterLockOK";
+            this.label_InterLockOK.Size = new System.Drawing.Size(26, 26);
+            this.label_InterLockOK.TabIndex = 3;
+            this.label_InterLockOK.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label21
+            // label_StateError
             // 
-            this.label21.BackColor = System.Drawing.Color.Red;
-            this.label21.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label21.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.ForeColor = System.Drawing.Color.GreenYellow;
-            this.label21.Location = new System.Drawing.Point(136, 90);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(26, 26);
-            this.label21.TabIndex = 3;
-            this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label_StateError.BackColor = System.Drawing.Color.Red;
+            this.label_StateError.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label_StateError.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_StateError.ForeColor = System.Drawing.Color.GreenYellow;
+            this.label_StateError.Location = new System.Drawing.Point(136, 115);
+            this.label_StateError.Name = "label_StateError";
+            this.label_StateError.Size = new System.Drawing.Size(26, 26);
+            this.label_StateError.TabIndex = 3;
+            this.label_StateError.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label19
+            // label_StateOK
             // 
-            this.label19.BackColor = System.Drawing.Color.Chartreuse;
-            this.label19.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label19.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.ForeColor = System.Drawing.Color.GreenYellow;
-            this.label19.Location = new System.Drawing.Point(87, 90);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(26, 26);
-            this.label19.TabIndex = 3;
-            this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label_StateOK.BackColor = System.Drawing.Color.Chartreuse;
+            this.label_StateOK.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label_StateOK.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_StateOK.ForeColor = System.Drawing.Color.GreenYellow;
+            this.label_StateOK.Location = new System.Drawing.Point(87, 115);
+            this.label_StateOK.Name = "label_StateOK";
+            this.label_StateOK.Size = new System.Drawing.Size(26, 26);
+            this.label_StateOK.TabIndex = 3;
+            this.label_StateOK.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label14
+            // label_Temp
             // 
-            this.label14.BackColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.label14.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label14.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.ForeColor = System.Drawing.Color.GreenYellow;
-            this.label14.Location = new System.Drawing.Point(81, 50);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(83, 29);
-            this.label14.TabIndex = 3;
-            this.label14.Text = "12.45℃";
-            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label_Temp.BackColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.label_Temp.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label_Temp.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_Temp.ForeColor = System.Drawing.Color.GreenYellow;
+            this.label_Temp.Location = new System.Drawing.Point(81, 58);
+            this.label_Temp.Name = "label_Temp";
+            this.label_Temp.Size = new System.Drawing.Size(83, 29);
+            this.label_Temp.TabIndex = 3;
+            this.label_Temp.Text = "12.45℃";
+            this.label_Temp.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label13
+            // label_Power
             // 
-            this.label13.BackColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.label13.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label13.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.ForeColor = System.Drawing.Color.GreenYellow;
-            this.label13.Location = new System.Drawing.Point(81, 21);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(83, 29);
-            this.label13.TabIndex = 3;
-            this.label13.Text = "24.3V";
-            this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label_Power.BackColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.label_Power.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label_Power.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_Power.ForeColor = System.Drawing.Color.GreenYellow;
+            this.label_Power.Location = new System.Drawing.Point(81, 29);
+            this.label_Power.Name = "label_Power";
+            this.label_Power.Size = new System.Drawing.Size(83, 29);
+            this.label_Power.TabIndex = 3;
+            this.label_Power.Text = "24.3V";
+            this.label_Power.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.button7);
+            this.groupBox3.Controls.Add(this.button6);
+            this.groupBox3.Controls.Add(this.btn_OpenHV);
             this.groupBox3.Controls.Add(this.button5);
-            this.groupBox3.Controls.Add(this.button4);
-            this.groupBox3.Controls.Add(this.button3);
+            this.groupBox3.Controls.Add(this.btn_CloseHV);
             this.groupBox3.Controls.Add(this.shapeContainer1);
-            this.groupBox3.Location = new System.Drawing.Point(493, 52);
+            this.groupBox3.Location = new System.Drawing.Point(477, 45);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(173, 352);
+            this.groupBox3.Size = new System.Drawing.Size(131, 352);
             this.groupBox3.TabIndex = 6;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "控制操作";
             // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(26, 315);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(75, 25);
+            this.button7.TabIndex = 0;
+            this.button7.Text = "载入设置";
+            this.button7.UseVisualStyleBackColor = true;
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(26, 285);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(75, 25);
+            this.button6.TabIndex = 0;
+            this.button6.Text = "保存设置";
+            this.button6.UseVisualStyleBackColor = true;
+            // 
+            // btn_OpenHV
+            // 
+            this.btn_OpenHV.Location = new System.Drawing.Point(49, 52);
+            this.btn_OpenHV.Name = "btn_OpenHV";
+            this.btn_OpenHV.Size = new System.Drawing.Size(66, 40);
+            this.btn_OpenHV.TabIndex = 0;
+            this.btn_OpenHV.Text = "高压开";
+            this.btn_OpenHV.UseVisualStyleBackColor = true;
+            // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(63, 155);
+            this.button5.Location = new System.Drawing.Point(26, 254);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 37);
+            this.button5.Size = new System.Drawing.Size(75, 25);
             this.button5.TabIndex = 0;
-            this.button5.Text = "复位";
+            this.button5.Text = "复位软件";
             this.button5.UseVisualStyleBackColor = true;
             // 
-            // button4
+            // btn_CloseHV
             // 
-            this.button4.Location = new System.Drawing.Point(63, 103);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 37);
-            this.button4.TabIndex = 0;
-            this.button4.Text = "高压关";
-            this.button4.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(63, 52);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 37);
-            this.button3.TabIndex = 0;
-            this.button3.Text = "高压开";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btn_CloseHV.Location = new System.Drawing.Point(47, 131);
+            this.btn_CloseHV.Name = "btn_CloseHV";
+            this.btn_CloseHV.Size = new System.Drawing.Size(68, 40);
+            this.btn_CloseHV.TabIndex = 0;
+            this.btn_CloseHV.Text = "高压关";
+            this.btn_CloseHV.UseVisualStyleBackColor = true;
             // 
             // shapeContainer1
             // 
@@ -798,29 +851,29 @@
             this.shapeContainer1.Margin = new System.Windows.Forms.Padding(0);
             this.shapeContainer1.Name = "shapeContainer1";
             this.shapeContainer1.Shapes.AddRange(new Microsoft.VisualBasic.PowerPacks.Shape[] {
-            this.ovalShape2,
-            this.ovalShape1});
-            this.shapeContainer1.Size = new System.Drawing.Size(167, 328);
+            this.ovalShape_CloseHV,
+            this.ovalShape_OpenHV});
+            this.shapeContainer1.Size = new System.Drawing.Size(125, 328);
             this.shapeContainer1.TabIndex = 1;
             this.shapeContainer1.TabStop = false;
             // 
-            // ovalShape1
+            // ovalShape_CloseHV
             // 
-            this.ovalShape1.FillColor = System.Drawing.Color.Red;
-            this.ovalShape1.FillStyle = Microsoft.VisualBasic.PowerPacks.FillStyle.Solid;
-            this.ovalShape1.Location = new System.Drawing.Point(20, 38);
-            this.ovalShape1.Name = "ovalShape1";
-            this.ovalShape1.Size = new System.Drawing.Size(25, 25);
+            this.ovalShape_CloseHV.BackColor = System.Drawing.SystemColors.Control;
+            this.ovalShape_CloseHV.Cursor = System.Windows.Forms.Cursors.Default;
+            this.ovalShape_CloseHV.FillColor = System.Drawing.Color.Lime;
+            this.ovalShape_CloseHV.FillStyle = Microsoft.VisualBasic.PowerPacks.FillStyle.Solid;
+            this.ovalShape_CloseHV.Location = new System.Drawing.Point(8, 116);
+            this.ovalShape_CloseHV.Name = "ovalShape_CloseHV";
+            this.ovalShape_CloseHV.Size = new System.Drawing.Size(25, 25);
             // 
-            // ovalShape2
+            // ovalShape_OpenHV
             // 
-            this.ovalShape2.BackColor = System.Drawing.SystemColors.Control;
-            this.ovalShape2.Cursor = System.Windows.Forms.Cursors.Default;
-            this.ovalShape2.FillColor = System.Drawing.Color.Lime;
-            this.ovalShape2.FillStyle = Microsoft.VisualBasic.PowerPacks.FillStyle.Solid;
-            this.ovalShape2.Location = new System.Drawing.Point(20, 88);
-            this.ovalShape2.Name = "ovalShape1";
-            this.ovalShape2.Size = new System.Drawing.Size(25, 25);
+            this.ovalShape_OpenHV.FillColor = System.Drawing.Color.Red;
+            this.ovalShape_OpenHV.FillStyle = Microsoft.VisualBasic.PowerPacks.FillStyle.Solid;
+            this.ovalShape_OpenHV.Location = new System.Drawing.Point(8, 40);
+            this.ovalShape_OpenHV.Name = "ovalShape_OpenHV";
+            this.ovalShape_OpenHV.Size = new System.Drawing.Size(25, 25);
             // 
             // FrmMain
             // 
@@ -828,10 +881,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(707, 635);
+            this.ClientSize = new System.Drawing.Size(633, 651);
             this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox_FilPreHeat);
             this.Controls.Add(this.groupBox_mA);
             this.Controls.Add(this.groupBox_kV);
@@ -850,6 +903,7 @@
             this.groupBox_FilPreHeat.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar_FilLimitSet)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
@@ -872,26 +926,24 @@
         private System.Windows.Forms.Button btn_kVSet;
         private System.Windows.Forms.TextBox txt_kVSet;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label_kV;
         private System.Windows.Forms.GroupBox groupBox_mA;
         private System.Windows.Forms.Button btn_mASet;
         private System.Windows.Forms.TextBox txt_mASet;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label_mA;
         private MyControls.AGauge aGauge1;
         private MyControls.AGauge aGauge2;
         private System.Windows.Forms.GroupBox groupBox_FilPreHeat;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox txt_FilPreHeat;
+        private System.Windows.Forms.Label label_Filment;
+        private System.Windows.Forms.Button btn_FilPreHeatSet;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox txt_FilLimit;
+        private System.Windows.Forms.Button btn_FilLimitSet;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.GroupBox groupBox2;
@@ -899,19 +951,28 @@
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label_InterLockError;
+        private System.Windows.Forms.Label label_InterLockOK;
+        private System.Windows.Forms.Label label_StateError;
+        private System.Windows.Forms.Label label_StateOK;
+        private System.Windows.Forms.Label label_Temp;
+        private System.Windows.Forms.Label label_Power;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btn_CloseHV;
+        private System.Windows.Forms.Button btn_OpenHV;
         private Microsoft.VisualBasic.PowerPacks.ShapeContainer shapeContainer1;
-        private Microsoft.VisualBasic.PowerPacks.OvalShape ovalShape2;
-        private Microsoft.VisualBasic.PowerPacks.OvalShape ovalShape1;
+        private Microsoft.VisualBasic.PowerPacks.OvalShape ovalShape_CloseHV;
+        private Microsoft.VisualBasic.PowerPacks.OvalShape ovalShape_OpenHV;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TrackBar trackBar_FilLimitSet;
+        private System.Windows.Forms.Label label_FilLimitHiden;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Timer timer1;
+        private System.IO.Ports.SerialPort serialPort1;
     }
 }
 
