@@ -34,19 +34,27 @@
             this.cOM口设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.以太网设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.设置机型规格ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.帮助ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.关于AToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.使用说明IToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.退出QToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel_SlaveAddress = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel_ComNum = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel_BaudRate = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel_RunTime = new System.Windows.Forms.ToolStripStatusLabel();
             this.groupBox_kV = new System.Windows.Forms.GroupBox();
             this.txt_kVSet = new System.Windows.Forms.TextBox();
-            this.aGauge1 = new MyControls.AGauge();
+            this.aGauge_kV = new MyControls.AGauge();
             this.btn_kVSet = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label_kV = new System.Windows.Forms.Label();
             this.groupBox_mA = new System.Windows.Forms.GroupBox();
             this.txt_mASet = new System.Windows.Forms.TextBox();
             this.btn_mASet = new System.Windows.Forms.Button();
-            this.aGauge2 = new MyControls.AGauge();
+            this.aGauge_mA = new MyControls.AGauge();
             this.label3 = new System.Windows.Forms.Label();
             this.label_mA = new System.Windows.Forms.Label();
             this.groupBox_FilPreHeat = new System.Windows.Forms.GroupBox();
@@ -61,7 +69,7 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.txt_FilLimit = new System.Windows.Forms.TextBox();
+            this.txt_FilLimitSet = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.trackBar_FilLimitSet = new System.Windows.Forms.TrackBar();
             this.btn_FilLimitSet = new System.Windows.Forms.Button();
@@ -87,8 +95,8 @@
             this.ovalShape_CloseHV = new Microsoft.VisualBasic.PowerPacks.OvalShape();
             this.ovalShape_OpenHV = new Microsoft.VisualBasic.PowerPacks.OvalShape();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.menuStrip1.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.groupBox_kV.SuspendLayout();
             this.groupBox_mA.SuspendLayout();
             this.groupBox_FilPreHeat.SuspendLayout();
@@ -127,24 +135,49 @@
             this.cOM口设置ToolStripMenuItem.Name = "cOM口设置ToolStripMenuItem";
             this.cOM口设置ToolStripMenuItem.Size = new System.Drawing.Size(185, 26);
             this.cOM口设置ToolStripMenuItem.Text = "COM口设置(&S)";
+            this.cOM口设置ToolStripMenuItem.Click += new System.EventHandler(this.tsmi_COMSet_Click);
             // 
             // 以太网设置ToolStripMenuItem
             // 
+            this.以太网设置ToolStripMenuItem.Enabled = false;
             this.以太网设置ToolStripMenuItem.Name = "以太网设置ToolStripMenuItem";
             this.以太网设置ToolStripMenuItem.Size = new System.Drawing.Size(185, 26);
             this.以太网设置ToolStripMenuItem.Text = "以太网设置(&L)";
             // 
             // 设置ToolStripMenuItem
             // 
+            this.设置ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.设置机型规格ToolStripMenuItem});
             this.设置ToolStripMenuItem.Name = "设置ToolStripMenuItem";
             this.设置ToolStripMenuItem.Size = new System.Drawing.Size(70, 24);
             this.设置ToolStripMenuItem.Text = "设置(&S)";
             // 
+            // 设置机型规格ToolStripMenuItem
+            // 
+            this.设置机型规格ToolStripMenuItem.Name = "设置机型规格ToolStripMenuItem";
+            this.设置机型规格ToolStripMenuItem.Size = new System.Drawing.Size(193, 26);
+            this.设置机型规格ToolStripMenuItem.Text = "设置机型规格(&T)";
+            // 
             // 帮助ToolStripMenuItem
             // 
+            this.帮助ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.关于AToolStripMenuItem,
+            this.使用说明IToolStripMenuItem});
             this.帮助ToolStripMenuItem.Name = "帮助ToolStripMenuItem";
-            this.帮助ToolStripMenuItem.Size = new System.Drawing.Size(78, 24);
-            this.帮助ToolStripMenuItem.Text = "帮助(&F1)";
+            this.帮助ToolStripMenuItem.Size = new System.Drawing.Size(73, 24);
+            this.帮助ToolStripMenuItem.Text = "帮助(&H)";
+            // 
+            // 关于AToolStripMenuItem
+            // 
+            this.关于AToolStripMenuItem.Name = "关于AToolStripMenuItem";
+            this.关于AToolStripMenuItem.Size = new System.Drawing.Size(158, 26);
+            this.关于AToolStripMenuItem.Text = "关于(&A)";
+            // 
+            // 使用说明IToolStripMenuItem
+            // 
+            this.使用说明IToolStripMenuItem.Name = "使用说明IToolStripMenuItem";
+            this.使用说明IToolStripMenuItem.Size = new System.Drawing.Size(158, 26);
+            this.使用说明IToolStripMenuItem.Text = "使用说明(&I)";
             // 
             // 退出QToolStripMenuItem
             // 
@@ -155,16 +188,53 @@
             // statusStrip1
             // 
             this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.statusStrip1.Location = new System.Drawing.Point(0, 629);
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel_SlaveAddress,
+            this.toolStripStatusLabel_ComNum,
+            this.toolStripStatusLabel_BaudRate,
+            this.toolStripStatusLabel1,
+            this.toolStripStatusLabel_RunTime});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 626);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(633, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(633, 25);
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel_SlaveAddress
+            // 
+            this.toolStripStatusLabel_SlaveAddress.Name = "toolStripStatusLabel_SlaveAddress";
+            this.toolStripStatusLabel_SlaveAddress.Size = new System.Drawing.Size(82, 20);
+            this.toolStripStatusLabel_SlaveAddress.Text = "从机地址:1";
+            // 
+            // toolStripStatusLabel_ComNum
+            // 
+            this.toolStripStatusLabel_ComNum.Name = "toolStripStatusLabel_ComNum";
+            this.toolStripStatusLabel_ComNum.Size = new System.Drawing.Size(160, 20);
+            this.toolStripStatusLabel_ComNum.Text = "当前使用串口:COMXX";
+            // 
+            // toolStripStatusLabel_BaudRate
+            // 
+            this.toolStripStatusLabel_BaudRate.AutoSize = false;
+            this.toolStripStatusLabel_BaudRate.Name = "toolStripStatusLabel_BaudRate";
+            this.toolStripStatusLabel_BaudRate.Size = new System.Drawing.Size(150, 20);
+            this.toolStripStatusLabel_BaudRate.Text = "当前波特率:9600";
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(103, 20);
+            this.toolStripStatusLabel1.Text = "软件运行时长:";
+            // 
+            // toolStripStatusLabel_RunTime
+            // 
+            this.toolStripStatusLabel_RunTime.Name = "toolStripStatusLabel_RunTime";
+            this.toolStripStatusLabel_RunTime.Size = new System.Drawing.Size(40, 20);
+            this.toolStripStatusLabel_RunTime.Text = "1:23";
             // 
             // groupBox_kV
             // 
             this.groupBox_kV.Controls.Add(this.txt_kVSet);
-            this.groupBox_kV.Controls.Add(this.aGauge1);
+            this.groupBox_kV.Controls.Add(this.aGauge_kV);
             this.groupBox_kV.Controls.Add(this.btn_kVSet);
             this.groupBox_kV.Controls.Add(this.label2);
             this.groupBox_kV.Controls.Add(this.label_kV);
@@ -183,106 +253,106 @@
             this.txt_kVSet.TabIndex = 5;
             this.txt_kVSet.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // aGauge1
+            // aGauge_kV
             // 
-            this.aGauge1.BaseArcColor = System.Drawing.Color.Gray;
-            this.aGauge1.BaseArcRadius = 80;
-            this.aGauge1.BaseArcStart = 135;
-            this.aGauge1.BaseArcSweep = 270;
-            this.aGauge1.BaseArcWidth = 2;
-            this.aGauge1.Cap_Idx = ((byte)(0));
-            this.aGauge1.CapColor = System.Drawing.Color.Red;
-            this.aGauge1.CapFont = new System.Drawing.Font("宋体", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.aGauge1.CapPosition = new System.Drawing.Point(93, 120);
-            this.aGauge1.CapsPosition = new System.Drawing.Point[] {
+            this.aGauge_kV.BaseArcColor = System.Drawing.Color.Gray;
+            this.aGauge_kV.BaseArcRadius = 80;
+            this.aGauge_kV.BaseArcStart = 135;
+            this.aGauge_kV.BaseArcSweep = 270;
+            this.aGauge_kV.BaseArcWidth = 2;
+            this.aGauge_kV.Cap_Idx = ((byte)(0));
+            this.aGauge_kV.CapColor = System.Drawing.Color.Red;
+            this.aGauge_kV.CapFont = new System.Drawing.Font("宋体", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.aGauge_kV.CapPosition = new System.Drawing.Point(93, 120);
+            this.aGauge_kV.CapsPosition = new System.Drawing.Point[] {
         new System.Drawing.Point(93, 120),
         new System.Drawing.Point(10, 10),
         new System.Drawing.Point(10, 10),
         new System.Drawing.Point(10, 10),
         new System.Drawing.Point(10, 10)};
-            this.aGauge1.CapsText = new string[] {
+            this.aGauge_kV.CapsText = new string[] {
         "kV",
         "",
         "",
         "",
         ""};
-            this.aGauge1.CapText = "kV";
-            this.aGauge1.Center = new System.Drawing.Point(105, 100);
-            this.aGauge1.Location = new System.Drawing.Point(6, 103);
-            this.aGauge1.MaxValue = 50F;
-            this.aGauge1.MinValue = 0F;
-            this.aGauge1.Name = "aGauge1";
-            this.aGauge1.NeedleColor1 = MyControls.AGauge.NeedleColorEnum.Gray;
-            this.aGauge1.NeedleColor2 = System.Drawing.Color.DimGray;
-            this.aGauge1.NeedleRadius = 80;
-            this.aGauge1.NeedleType = 0;
-            this.aGauge1.NeedleWidth = 3;
-            this.aGauge1.Range_Idx = ((byte)(1));
-            this.aGauge1.RangeColor = System.Drawing.Color.Red;
-            this.aGauge1.RangeEnabled = true;
-            this.aGauge1.RangeEndValue = 0.001F;
-            this.aGauge1.RangeInnerRadius = 70;
-            this.aGauge1.RangeOuterRadius = 80;
-            this.aGauge1.RangesColor = new System.Drawing.Color[] {
+            this.aGauge_kV.CapText = "kV";
+            this.aGauge_kV.Center = new System.Drawing.Point(105, 100);
+            this.aGauge_kV.Location = new System.Drawing.Point(6, 103);
+            this.aGauge_kV.MaxValue = 50F;
+            this.aGauge_kV.MinValue = 0F;
+            this.aGauge_kV.Name = "aGauge_kV";
+            this.aGauge_kV.NeedleColor1 = MyControls.AGauge.NeedleColorEnum.Gray;
+            this.aGauge_kV.NeedleColor2 = System.Drawing.Color.DimGray;
+            this.aGauge_kV.NeedleRadius = 80;
+            this.aGauge_kV.NeedleType = 0;
+            this.aGauge_kV.NeedleWidth = 3;
+            this.aGauge_kV.Range_Idx = ((byte)(1));
+            this.aGauge_kV.RangeColor = System.Drawing.Color.Red;
+            this.aGauge_kV.RangeEnabled = true;
+            this.aGauge_kV.RangeEndValue = 0.001F;
+            this.aGauge_kV.RangeInnerRadius = 70;
+            this.aGauge_kV.RangeOuterRadius = 80;
+            this.aGauge_kV.RangesColor = new System.Drawing.Color[] {
         System.Drawing.Color.LightGreen,
         System.Drawing.Color.Red,
         System.Drawing.SystemColors.Control,
         System.Drawing.SystemColors.Control,
         System.Drawing.SystemColors.Control};
-            this.aGauge1.RangesEnabled = new bool[] {
+            this.aGauge_kV.RangesEnabled = new bool[] {
         false,
         true,
         false,
         false,
         false};
-            this.aGauge1.RangesEndValue = new float[] {
+            this.aGauge_kV.RangesEndValue = new float[] {
         300F,
         0.001F,
         0F,
         0F,
         0F};
-            this.aGauge1.RangesInnerRadius = new int[] {
+            this.aGauge_kV.RangesInnerRadius = new int[] {
         70,
         70,
         70,
         70,
         70};
-            this.aGauge1.RangesOuterRadius = new int[] {
+            this.aGauge_kV.RangesOuterRadius = new int[] {
         80,
         80,
         80,
         80,
         80};
-            this.aGauge1.RangesStartValue = new float[] {
+            this.aGauge_kV.RangesStartValue = new float[] {
         -100F,
         0F,
         0F,
         0F,
         0F};
-            this.aGauge1.RangeStartValue = 0F;
-            this.aGauge1.ScaleLinesInterColor = System.Drawing.Color.Black;
-            this.aGauge1.ScaleLinesInterInnerRadius = 73;
-            this.aGauge1.ScaleLinesInterOuterRadius = 80;
-            this.aGauge1.ScaleLinesInterWidth = 1;
-            this.aGauge1.ScaleLinesMajorColor = System.Drawing.Color.Black;
-            this.aGauge1.ScaleLinesMajorInnerRadius = 70;
-            this.aGauge1.ScaleLinesMajorOuterRadius = 80;
-            this.aGauge1.ScaleLinesMajorStepValue = 5F;
-            this.aGauge1.ScaleLinesMajorWidth = 2;
-            this.aGauge1.ScaleLinesMinorColor = System.Drawing.Color.Gray;
-            this.aGauge1.ScaleLinesMinorInnerRadius = 75;
-            this.aGauge1.ScaleLinesMinorNumOf = 9;
-            this.aGauge1.ScaleLinesMinorOuterRadius = 80;
-            this.aGauge1.ScaleLinesMinorWidth = 1;
-            this.aGauge1.ScaleNumbersColor = System.Drawing.Color.Black;
-            this.aGauge1.ScaleNumbersFormat = null;
-            this.aGauge1.ScaleNumbersRadius = 95;
-            this.aGauge1.ScaleNumbersRotation = 0;
-            this.aGauge1.ScaleNumbersStartScaleLine = 0;
-            this.aGauge1.ScaleNumbersStepScaleLines = 1;
-            this.aGauge1.Size = new System.Drawing.Size(210, 180);
-            this.aGauge1.TabIndex = 4;
-            this.aGauge1.Value = 0F;
+            this.aGauge_kV.RangeStartValue = 0F;
+            this.aGauge_kV.ScaleLinesInterColor = System.Drawing.Color.Black;
+            this.aGauge_kV.ScaleLinesInterInnerRadius = 73;
+            this.aGauge_kV.ScaleLinesInterOuterRadius = 80;
+            this.aGauge_kV.ScaleLinesInterWidth = 1;
+            this.aGauge_kV.ScaleLinesMajorColor = System.Drawing.Color.Black;
+            this.aGauge_kV.ScaleLinesMajorInnerRadius = 70;
+            this.aGauge_kV.ScaleLinesMajorOuterRadius = 80;
+            this.aGauge_kV.ScaleLinesMajorStepValue = 5F;
+            this.aGauge_kV.ScaleLinesMajorWidth = 2;
+            this.aGauge_kV.ScaleLinesMinorColor = System.Drawing.Color.Gray;
+            this.aGauge_kV.ScaleLinesMinorInnerRadius = 75;
+            this.aGauge_kV.ScaleLinesMinorNumOf = 9;
+            this.aGauge_kV.ScaleLinesMinorOuterRadius = 80;
+            this.aGauge_kV.ScaleLinesMinorWidth = 1;
+            this.aGauge_kV.ScaleNumbersColor = System.Drawing.Color.Black;
+            this.aGauge_kV.ScaleNumbersFormat = null;
+            this.aGauge_kV.ScaleNumbersRadius = 95;
+            this.aGauge_kV.ScaleNumbersRotation = 0;
+            this.aGauge_kV.ScaleNumbersStartScaleLine = 0;
+            this.aGauge_kV.ScaleNumbersStepScaleLines = 1;
+            this.aGauge_kV.Size = new System.Drawing.Size(210, 180);
+            this.aGauge_kV.TabIndex = 4;
+            this.aGauge_kV.Value = 0F;
             // 
             // btn_kVSet
             // 
@@ -321,7 +391,7 @@
             // 
             this.groupBox_mA.Controls.Add(this.txt_mASet);
             this.groupBox_mA.Controls.Add(this.btn_mASet);
-            this.groupBox_mA.Controls.Add(this.aGauge2);
+            this.groupBox_mA.Controls.Add(this.aGauge_mA);
             this.groupBox_mA.Controls.Add(this.label3);
             this.groupBox_mA.Controls.Add(this.label_mA);
             this.groupBox_mA.Location = new System.Drawing.Point(248, 45);
@@ -349,106 +419,106 @@
             this.btn_mASet.Text = "电流设定";
             this.btn_mASet.UseVisualStyleBackColor = false;
             // 
-            // aGauge2
+            // aGauge_mA
             // 
-            this.aGauge2.BaseArcColor = System.Drawing.Color.Gray;
-            this.aGauge2.BaseArcRadius = 80;
-            this.aGauge2.BaseArcStart = 135;
-            this.aGauge2.BaseArcSweep = 270;
-            this.aGauge2.BaseArcWidth = 2;
-            this.aGauge2.Cap_Idx = ((byte)(0));
-            this.aGauge2.CapColor = System.Drawing.SystemColors.Highlight;
-            this.aGauge2.CapFont = new System.Drawing.Font("宋体", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.aGauge2.CapPosition = new System.Drawing.Point(93, 120);
-            this.aGauge2.CapsPosition = new System.Drawing.Point[] {
+            this.aGauge_mA.BaseArcColor = System.Drawing.Color.Gray;
+            this.aGauge_mA.BaseArcRadius = 80;
+            this.aGauge_mA.BaseArcStart = 135;
+            this.aGauge_mA.BaseArcSweep = 270;
+            this.aGauge_mA.BaseArcWidth = 2;
+            this.aGauge_mA.Cap_Idx = ((byte)(0));
+            this.aGauge_mA.CapColor = System.Drawing.SystemColors.Highlight;
+            this.aGauge_mA.CapFont = new System.Drawing.Font("宋体", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.aGauge_mA.CapPosition = new System.Drawing.Point(93, 120);
+            this.aGauge_mA.CapsPosition = new System.Drawing.Point[] {
         new System.Drawing.Point(93, 120),
         new System.Drawing.Point(10, 10),
         new System.Drawing.Point(10, 10),
         new System.Drawing.Point(10, 10),
         new System.Drawing.Point(10, 10)};
-            this.aGauge2.CapsText = new string[] {
+            this.aGauge_mA.CapsText = new string[] {
         "mA",
         "",
         "",
         "",
         ""};
-            this.aGauge2.CapText = "mA";
-            this.aGauge2.Center = new System.Drawing.Point(105, 100);
-            this.aGauge2.Location = new System.Drawing.Point(6, 103);
-            this.aGauge2.MaxValue = 1F;
-            this.aGauge2.MinValue = 0F;
-            this.aGauge2.Name = "aGauge2";
-            this.aGauge2.NeedleColor1 = MyControls.AGauge.NeedleColorEnum.Gray;
-            this.aGauge2.NeedleColor2 = System.Drawing.Color.DimGray;
-            this.aGauge2.NeedleRadius = 80;
-            this.aGauge2.NeedleType = 0;
-            this.aGauge2.NeedleWidth = 3;
-            this.aGauge2.Range_Idx = ((byte)(1));
-            this.aGauge2.RangeColor = System.Drawing.SystemColors.Highlight;
-            this.aGauge2.RangeEnabled = true;
-            this.aGauge2.RangeEndValue = 0.001F;
-            this.aGauge2.RangeInnerRadius = 70;
-            this.aGauge2.RangeOuterRadius = 80;
-            this.aGauge2.RangesColor = new System.Drawing.Color[] {
+            this.aGauge_mA.CapText = "mA";
+            this.aGauge_mA.Center = new System.Drawing.Point(105, 100);
+            this.aGauge_mA.Location = new System.Drawing.Point(6, 103);
+            this.aGauge_mA.MaxValue = 1F;
+            this.aGauge_mA.MinValue = 0F;
+            this.aGauge_mA.Name = "aGauge_mA";
+            this.aGauge_mA.NeedleColor1 = MyControls.AGauge.NeedleColorEnum.Gray;
+            this.aGauge_mA.NeedleColor2 = System.Drawing.Color.DimGray;
+            this.aGauge_mA.NeedleRadius = 80;
+            this.aGauge_mA.NeedleType = 0;
+            this.aGauge_mA.NeedleWidth = 3;
+            this.aGauge_mA.Range_Idx = ((byte)(1));
+            this.aGauge_mA.RangeColor = System.Drawing.SystemColors.Highlight;
+            this.aGauge_mA.RangeEnabled = true;
+            this.aGauge_mA.RangeEndValue = 0.001F;
+            this.aGauge_mA.RangeInnerRadius = 70;
+            this.aGauge_mA.RangeOuterRadius = 80;
+            this.aGauge_mA.RangesColor = new System.Drawing.Color[] {
         System.Drawing.Color.LightGreen,
         System.Drawing.SystemColors.Highlight,
         System.Drawing.SystemColors.Control,
         System.Drawing.SystemColors.Control,
         System.Drawing.SystemColors.Control};
-            this.aGauge2.RangesEnabled = new bool[] {
+            this.aGauge_mA.RangesEnabled = new bool[] {
         false,
         true,
         false,
         false,
         false};
-            this.aGauge2.RangesEndValue = new float[] {
+            this.aGauge_mA.RangesEndValue = new float[] {
         300F,
         0.001F,
         0F,
         0F,
         0F};
-            this.aGauge2.RangesInnerRadius = new int[] {
+            this.aGauge_mA.RangesInnerRadius = new int[] {
         70,
         70,
         70,
         70,
         70};
-            this.aGauge2.RangesOuterRadius = new int[] {
+            this.aGauge_mA.RangesOuterRadius = new int[] {
         80,
         80,
         80,
         80,
         80};
-            this.aGauge2.RangesStartValue = new float[] {
+            this.aGauge_mA.RangesStartValue = new float[] {
         -100F,
         0F,
         0F,
         0F,
         0F};
-            this.aGauge2.RangeStartValue = 0F;
-            this.aGauge2.ScaleLinesInterColor = System.Drawing.Color.Black;
-            this.aGauge2.ScaleLinesInterInnerRadius = 73;
-            this.aGauge2.ScaleLinesInterOuterRadius = 80;
-            this.aGauge2.ScaleLinesInterWidth = 1;
-            this.aGauge2.ScaleLinesMajorColor = System.Drawing.Color.Black;
-            this.aGauge2.ScaleLinesMajorInnerRadius = 70;
-            this.aGauge2.ScaleLinesMajorOuterRadius = 80;
-            this.aGauge2.ScaleLinesMajorStepValue = 0.1F;
-            this.aGauge2.ScaleLinesMajorWidth = 2;
-            this.aGauge2.ScaleLinesMinorColor = System.Drawing.Color.Gray;
-            this.aGauge2.ScaleLinesMinorInnerRadius = 75;
-            this.aGauge2.ScaleLinesMinorNumOf = 9;
-            this.aGauge2.ScaleLinesMinorOuterRadius = 80;
-            this.aGauge2.ScaleLinesMinorWidth = 1;
-            this.aGauge2.ScaleNumbersColor = System.Drawing.Color.Black;
-            this.aGauge2.ScaleNumbersFormat = null;
-            this.aGauge2.ScaleNumbersRadius = 95;
-            this.aGauge2.ScaleNumbersRotation = 0;
-            this.aGauge2.ScaleNumbersStartScaleLine = 0;
-            this.aGauge2.ScaleNumbersStepScaleLines = 1;
-            this.aGauge2.Size = new System.Drawing.Size(210, 180);
-            this.aGauge2.TabIndex = 4;
-            this.aGauge2.Value = 0F;
+            this.aGauge_mA.RangeStartValue = 0F;
+            this.aGauge_mA.ScaleLinesInterColor = System.Drawing.Color.Black;
+            this.aGauge_mA.ScaleLinesInterInnerRadius = 73;
+            this.aGauge_mA.ScaleLinesInterOuterRadius = 80;
+            this.aGauge_mA.ScaleLinesInterWidth = 1;
+            this.aGauge_mA.ScaleLinesMajorColor = System.Drawing.Color.Black;
+            this.aGauge_mA.ScaleLinesMajorInnerRadius = 70;
+            this.aGauge_mA.ScaleLinesMajorOuterRadius = 80;
+            this.aGauge_mA.ScaleLinesMajorStepValue = 0.1F;
+            this.aGauge_mA.ScaleLinesMajorWidth = 2;
+            this.aGauge_mA.ScaleLinesMinorColor = System.Drawing.Color.Gray;
+            this.aGauge_mA.ScaleLinesMinorInnerRadius = 75;
+            this.aGauge_mA.ScaleLinesMinorNumOf = 9;
+            this.aGauge_mA.ScaleLinesMinorOuterRadius = 80;
+            this.aGauge_mA.ScaleLinesMinorWidth = 1;
+            this.aGauge_mA.ScaleNumbersColor = System.Drawing.Color.Black;
+            this.aGauge_mA.ScaleNumbersFormat = null;
+            this.aGauge_mA.ScaleNumbersRadius = 95;
+            this.aGauge_mA.ScaleNumbersRotation = 0;
+            this.aGauge_mA.ScaleNumbersStartScaleLine = 0;
+            this.aGauge_mA.ScaleNumbersStepScaleLines = 1;
+            this.aGauge_mA.Size = new System.Drawing.Size(210, 180);
+            this.aGauge_mA.TabIndex = 4;
+            this.aGauge_mA.Value = 0F;
             // 
             // label3
             // 
@@ -559,7 +629,7 @@
             this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.label23);
             this.groupBox1.Controls.Add(this.label9);
-            this.groupBox1.Controls.Add(this.txt_FilLimit);
+            this.groupBox1.Controls.Add(this.txt_FilLimitSet);
             this.groupBox1.Controls.Add(this.label11);
             this.groupBox1.Controls.Add(this.trackBar_FilLimitSet);
             this.groupBox1.Controls.Add(this.btn_FilLimitSet);
@@ -607,14 +677,14 @@
             this.label9.TabIndex = 8;
             this.label9.Text = "0A";
             // 
-            // txt_FilLimit
+            // txt_FilLimitSet
             // 
-            this.txt_FilLimit.Location = new System.Drawing.Point(206, 28);
-            this.txt_FilLimit.Name = "txt_FilLimit";
-            this.txt_FilLimit.Size = new System.Drawing.Size(51, 25);
-            this.txt_FilLimit.TabIndex = 5;
-            this.txt_FilLimit.Text = "2.5";
-            this.txt_FilLimit.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txt_FilLimitSet.Location = new System.Drawing.Point(206, 28);
+            this.txt_FilLimitSet.Name = "txt_FilLimitSet";
+            this.txt_FilLimitSet.Size = new System.Drawing.Size(51, 25);
+            this.txt_FilLimitSet.TabIndex = 5;
+            this.txt_FilLimitSet.Text = "2.5";
+            this.txt_FilLimitSet.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label11
             // 
@@ -635,6 +705,7 @@
             this.trackBar_FilLimitSet.Size = new System.Drawing.Size(161, 56);
             this.trackBar_FilLimitSet.TabIndex = 7;
             this.trackBar_FilLimitSet.TickFrequency = 10;
+            this.trackBar_FilLimitSet.Scroll += new System.EventHandler(this.trackBar_FilLimitSet_Scroll);
             // 
             // btn_FilLimitSet
             // 
@@ -875,6 +946,10 @@
             this.ovalShape_OpenHV.Name = "ovalShape_OpenHV";
             this.ovalShape_OpenHV.Size = new System.Drawing.Size(25, 25);
             // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -893,8 +968,11 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "FrmMain";
             this.Text = "[大连泰思曼科技有限公司]TXR1012上位机";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmMain_FormClosed);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.groupBox_kV.ResumeLayout(false);
             this.groupBox_kV.PerformLayout();
             this.groupBox_mA.ResumeLayout(false);
@@ -932,8 +1010,8 @@
         private System.Windows.Forms.TextBox txt_mASet;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label_mA;
-        private MyControls.AGauge aGauge1;
-        private MyControls.AGauge aGauge2;
+        private MyControls.AGauge aGauge_kV;
+        private MyControls.AGauge aGauge_mA;
         private System.Windows.Forms.GroupBox groupBox_FilPreHeat;
         private System.Windows.Forms.TextBox txt_FilPreHeat;
         private System.Windows.Forms.Label label_Filment;
@@ -942,7 +1020,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox txt_FilLimit;
+        private System.Windows.Forms.TextBox txt_FilLimitSet;
         private System.Windows.Forms.Button btn_FilLimitSet;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
@@ -972,7 +1050,14 @@
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Timer timer1;
-        private System.IO.Ports.SerialPort serialPort1;
+        private System.Windows.Forms.ToolStripMenuItem 设置机型规格ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 关于AToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 使用说明IToolStripMenuItem;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel_SlaveAddress;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel_ComNum;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel_BaudRate;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel_RunTime;
     }
 }
 

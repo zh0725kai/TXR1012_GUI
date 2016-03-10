@@ -11,7 +11,6 @@ F:\360云盘\learn\softwareLearn\vs\GitHub\TXR1012_GUI\TXR1012_GUI\TXR1012_GUI\o
 F:\360云盘\learn\softwareLearn\vs\GitHub\TXR1012_GUI\TXR1012_GUI\TXR1012_GUI\obj\Debug\TXR1012_GUI.pdb
 F:\360云盘\learn\softwareLearn\vs\GitHub\TXR1012_GUI\TXR1012_GUI\TXR1012_GUI\bin\Debug\TXR1012_GUI.exe
 F:\360云盘\learn\softwareLearn\vs\GitHub\TXR1012_GUI\TXR1012_GUI\TXR1012_GUI\bin\Debug\TXR1012_GUI.pdb
-F:\360云盘\learn\softwareLearn\vs\GitHub\TXR1012_GUI\TXR1012_GUI\TXR1012_GUI\obj\Debug\TXR1012_GUI.csprojResolveAssemblyReference.cache
 F:\360云盘\learn\softwareLearn\vs\GitHub\TXR1012_GUI\TXR1012_GUI\TXR1012_GUI\obj\Debug\TXR1012_GUI.FrmMain.resources
 F:\360云盘\learn\softwareLearn\vs\GitHub\TXR1012_GUI\TXR1012_GUI\TXR1012_GUI\obj\Debug\TXR1012_GUI.Properties.Resources.resources
 F:\360云盘\learn\softwareLearn\vs\GitHub\TXR1012_GUI\TXR1012_GUI\TXR1012_GUI\obj\Debug\TXR1012_GUI.csproj.GenerateResource.Cache
@@ -25,3 +24,5 @@ F:\360云盘\learn\softwareLearn\vs\GitHub\TXR1012_GUI\TXR1012_GUI\TXR1012_GUI\b
 F:\360云盘\learn\softwareLearn\vs\GitHub\TXR1012_GUI\TXR1012_GUI\TXR1012_GUI\bin\Debug\Modbus.dll
 F:\360云盘\learn\softwareLearn\vs\GitHub\TXR1012_GUI\TXR1012_GUI\TXR1012_GUI\bin\Debug\Modbus.Extensions.dll
 F:\360云盘\learn\softwareLearn\vs\GitHub\TXR1012_GUI\TXR1012_GUI\TXR1012_GUI\bin\Debug\Unme.Common.dll
+F:\360云盘\learn\softwareLearn\vs\GitHub\TXR1012_GUI\TXR1012_GUI\TXR1012_GUI\obj\Debug\TXR1012_GUI.csprojResolveAssemblyReference.cache
+F:\360云盘\learn\softwareLearn\vs\GitHub\TXR1012_GUI\TXR1012_GUI\TXR1012_GUI\obj\Debug\TXR1012_GUI.FrmCOMSet.resources

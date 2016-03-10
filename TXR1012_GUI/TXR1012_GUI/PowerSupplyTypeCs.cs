@@ -5,7 +5,7 @@ using System.Text;
 
 namespace TXR1012_GUI
 {
-    class PowerSupplyTypeCs
+    public  class PowerSupplyTypeCs
     {
         /// <summary>
         /// 电源型号规格参数表
@@ -21,6 +21,6 @@ namespace TXR1012_GUI
         public float MaxPowerVoltage { get; set; }//最高测量供电电压
         public float MinPowerVoltage { get; set; }//最低测量供电电压
         public float MaxTemp { get; set; }//最高测量温度
-        public float Minemp { get; set; }//最低测量温度
+        public float MinTemp { get; set; }//最低测量温度
     }
 }
