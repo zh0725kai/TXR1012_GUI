@@ -58,15 +58,15 @@ namespace TXR1012_GUI
             FrmMain.myserialPort.DataBits = Convert.ToInt32(cbo_DataBits.Text.Trim());
             //验证txt_SlaveAddress为数字
 
-                try
-                {
-                    FrmMain.SlaveAddress =(Byte)int.Parse(txt_SlaveAddress.Text.Trim());//从机地址要本文框验证才行
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("请输入正确的从机地址！地址为纯数字","提示！");
-                    return;
-                }
+            try
+            {
+                FrmMain.SlaveAddress = (Byte)int.Parse(txt_SlaveAddress.Text.Trim());//从机地址要本文框验证才行
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("请输入正确的从机地址！地址为纯数字", "提示！");
+                return;//一定要加这个，这样才能返回重新设置的界面
+            }
            
             this.Close();
         }

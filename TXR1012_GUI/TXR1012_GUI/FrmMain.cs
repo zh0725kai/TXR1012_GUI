@@ -19,6 +19,9 @@ namespace TXR1012_GUI
         public static Byte SlaveAddress;
         public static DateTime StartDateTime;
         public static DateTime HVStartDataTime;
+
+       
+
         public FrmMain()
         {
             InitializeComponent();
@@ -182,5 +185,163 @@ namespace TXR1012_GUI
         {
             myserialPort.Close();
         }
+
+        private void aGauge_kV_ValueInRangeChanged(object sender, MyControls.AGauge.ValueInRangeChangedEventArgs e)
+        {
+            aGauge_kV.Value = (float)Math.Round(aGauge_kV.Value, 2);
+            txt_kVSet.Text = aGauge_kV.Value.ToString();
+        }
+
+        private void btn_kVSet_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                MData.kVSet = float.Parse(txt_kVSet.Text.Trim());//从机地址要本文框验证才行
+                if ((MData.kVSet>TXR1012.MaxkV)&&(MData.kVSet<TXR1012.MinkV))
+                {
+                    MessageBox.Show("设定值超限，请重新设定！", "提示！");
+                    return;//一定要加这个，这样才能返回重新设置的界面
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("请输入正确的设定值", "提示！");
+                return;//一定要加这个，这样才能返回重新设置的界面
+            }
+            try
+            {
+                MData.WritekVSet(SlaveAddress,myserialPort);
+                aGauge_kV.Value = MData.kVSet;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("设定操作失败，请检查串口设置！", "提示！");
+                return;//一定要加这个，这样才能返回重新设置的界面
+                //throw;  
+            }
+        }
+
+        #region 鼠标调节电压、电流 设定值
+        private bool _MouseIsDown = false;
+        private Point _PointDown = new Point();//记录鼠标按下的点
+        private void aGauge_kV_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (true)
+            {
+                _MouseIsDown = false;
+            }
+        }
+
+        private void aGauge_kV_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (_MouseIsDown)
+            {
+                if (e.X > _PointDown.X)
+                {
+                    aGauge_kV.Value += (Math.Abs(e.X - _PointDown.X) + Math.Abs(e.Y - _PointDown.Y) / 2) * TXR1012.MaxkV / 10000;
+                    //aGauge_kV.Value += (e.X - _PointDown.X) * TXR1012.MaxkV / 4000;
+                    aGauge_kV.Value = (float)Math.Round(aGauge_kV.Value, 2);
+                    txt_kVSet.Text = aGauge_kV.Value.ToString();
+                    //txt_kVSet.Text = aGauge_kV.Value.ToString("G4");
+                    //txt_kVSet.Text = aGauge_kV.Value.ToString("00.00");
+                }
+                else
+                {
+                    aGauge_kV.Value -= (Math.Abs(e.X - _PointDown.X) + Math.Abs(e.Y - _PointDown.Y) / 2) * TXR1012.MaxkV / 10000;
+                    //aGauge_kV.Value -= -(e.X - _PointDown.X) * TXR1012.MaxkV / 4000;
+                    aGauge_kV.Value = (float)Math.Round(aGauge_kV.Value, 2);
+                    txt_kVSet.Text = aGauge_kV.Value.ToString();
+                }
+            }
+        }
+        //private void aGauge_kV_MouseMove(object sender, MouseEventArgs e)
+        //{
+        //    if (_MouseIsDown)
+        //    {
+        //        if(aGauge_kV.Value<=TXR1012.MaxkV/1.5f)
+        //        {
+        //            if (e.Y > _PointDown.Y)
+        //            {
+        //                aGauge_kV.Value += (Math.Abs(e.X - _PointDown.X) /2+ Math.Abs(e.Y - _PointDown.Y) ) * TXR1012.MaxkV / 10000;
+        //                //aGauge_kV.Value += (e.X - _PointDown.X) * TXR1012.MaxkV / 4000;
+        //                aGauge_kV.Value = (float)Math.Round(aGauge_kV.Value, 2);
+        //                txt_kVSet.Text = aGauge_kV.Value.ToString();
+        //            }
+        //            else
+        //            {
+        //                aGauge_kV.Value -= (Math.Abs(e.X - _PointDown.X)/2 + Math.Abs(e.Y - _PointDown.Y) ) * TXR1012.MaxkV / 10000;
+        //                //aGauge_kV.Value -= -(e.X - _PointDown.X) * TXR1012.MaxkV / 4000;
+        //                aGauge_kV.Value = (float)Math.Round(aGauge_kV.Value, 2);
+        //                txt_kVSet.Text = aGauge_kV.Value.ToString();
+        //            }
+        //        }
+        //        if (aGauge_kV.Value >= TXR1012.MaxkV / 3f)
+        //        {
+        //            if (e.Y > _PointDown.Y)
+        //            {
+        //                aGauge_kV.Value += (Math.Abs(e.X - _PointDown.X) / 2 + Math.Abs(e.Y - _PointDown.Y)) * TXR1012.MaxkV / 10000;
+        //                //aGauge_kV.Value += (e.X - _PointDown.X) * TXR1012.MaxkV / 4000;
+        //                aGauge_kV.Value = (float)Math.Round(aGauge_kV.Value, 2);
+        //                txt_kVSet.Text = aGauge_kV.Value.ToString();
+        //            }
+        //            else
+        //            {
+        //                aGauge_kV.Value -= (Math.Abs(e.X - _PointDown.X) / 2 + Math.Abs(e.Y - _PointDown.Y)) * TXR1012.MaxkV / 10000;
+        //                //aGauge_kV.Value -= -(e.X - _PointDown.X) * TXR1012.MaxkV / 4000;
+        //                aGauge_kV.Value = (float)Math.Round(aGauge_kV.Value, 2);
+        //                txt_kVSet.Text = aGauge_kV.Value.ToString();
+        //            }
+        //        }
+        //    }
+        //}
+
+        private void aGauge_kV_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (true)
+            {
+                _MouseIsDown = true;
+                _PointDown.X = e.X;
+                _PointDown.Y = e.Y;
+            }
+        } 
+
+
+        private void aGauge_mA_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (true)
+            {
+                _MouseIsDown = true;
+                _PointDown.X = e.X;
+                _PointDown.Y = e.Y;
+            }
+        }
+
+        private void aGauge_mA_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (_MouseIsDown)
+            {
+                if (e.X > _PointDown.X)
+                {
+                    aGauge_mA.Value += (Math.Abs(e.X - _PointDown.X) + Math.Abs(e.Y - _PointDown.Y) / 2) * TXR1012.MaxmA / 10000;
+                    aGauge_mA.Value = (float)Math.Round(aGauge_mA.Value, 2);
+                    txt_mASet.Text = aGauge_mA.Value.ToString();
+                }
+                else
+                {
+                    aGauge_mA.Value -= (Math.Abs(e.X - _PointDown.X) + Math.Abs(e.Y - _PointDown.Y) / 2) * TXR1012.MaxmA / 10000;
+                    aGauge_mA.Value = (float)Math.Round(aGauge_mA.Value, 2);
+                    txt_mASet.Text = aGauge_mA.Value.ToString();
+                }
+            }
+        }
+
+        private void aGauge_mA_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (true)
+            {
+                _MouseIsDown = false;
+            }
+        }
+        #endregion
     }
 }

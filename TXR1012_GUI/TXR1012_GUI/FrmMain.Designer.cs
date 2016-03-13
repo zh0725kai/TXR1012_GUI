@@ -278,6 +278,7 @@
         ""};
             this.aGauge_kV.CapText = "kV";
             this.aGauge_kV.Center = new System.Drawing.Point(105, 100);
+            this.aGauge_kV.Cursor = System.Windows.Forms.Cursors.Hand;
             this.aGauge_kV.Location = new System.Drawing.Point(6, 103);
             this.aGauge_kV.MaxValue = 50F;
             this.aGauge_kV.MinValue = 0F;
@@ -350,9 +351,13 @@
             this.aGauge_kV.ScaleNumbersRotation = 0;
             this.aGauge_kV.ScaleNumbersStartScaleLine = 0;
             this.aGauge_kV.ScaleNumbersStepScaleLines = 1;
-            this.aGauge_kV.Size = new System.Drawing.Size(210, 180);
+            this.aGauge_kV.Size = new System.Drawing.Size(210, 175);
             this.aGauge_kV.TabIndex = 4;
             this.aGauge_kV.Value = 0F;
+            this.aGauge_kV.ValueInRangeChanged += new MyControls.AGauge.ValueInRangeChangedDelegate(this.aGauge_kV_ValueInRangeChanged);
+            this.aGauge_kV.MouseDown += new System.Windows.Forms.MouseEventHandler(this.aGauge_kV_MouseDown);
+            this.aGauge_kV.MouseMove += new System.Windows.Forms.MouseEventHandler(this.aGauge_kV_MouseMove);
+            this.aGauge_kV.MouseUp += new System.Windows.Forms.MouseEventHandler(this.aGauge_kV_MouseUp);
             // 
             // btn_kVSet
             // 
@@ -362,6 +367,7 @@
             this.btn_kVSet.TabIndex = 6;
             this.btn_kVSet.Text = "电压设定";
             this.btn_kVSet.UseVisualStyleBackColor = true;
+            this.btn_kVSet.Click += new System.EventHandler(this.btn_kVSet_Click);
             // 
             // label2
             // 
@@ -444,6 +450,7 @@
         ""};
             this.aGauge_mA.CapText = "mA";
             this.aGauge_mA.Center = new System.Drawing.Point(105, 100);
+            this.aGauge_mA.Cursor = System.Windows.Forms.Cursors.Hand;
             this.aGauge_mA.Location = new System.Drawing.Point(6, 103);
             this.aGauge_mA.MaxValue = 1F;
             this.aGauge_mA.MinValue = 0F;
@@ -516,9 +523,12 @@
             this.aGauge_mA.ScaleNumbersRotation = 0;
             this.aGauge_mA.ScaleNumbersStartScaleLine = 0;
             this.aGauge_mA.ScaleNumbersStepScaleLines = 1;
-            this.aGauge_mA.Size = new System.Drawing.Size(210, 180);
+            this.aGauge_mA.Size = new System.Drawing.Size(210, 175);
             this.aGauge_mA.TabIndex = 4;
             this.aGauge_mA.Value = 0F;
+            this.aGauge_mA.MouseDown += new System.Windows.Forms.MouseEventHandler(this.aGauge_mA_MouseDown);
+            this.aGauge_mA.MouseMove += new System.Windows.Forms.MouseEventHandler(this.aGauge_mA_MouseMove);
+            this.aGauge_mA.MouseUp += new System.Windows.Forms.MouseEventHandler(this.aGauge_mA_MouseUp);
             // 
             // label3
             // 

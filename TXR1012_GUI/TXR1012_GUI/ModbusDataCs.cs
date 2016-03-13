@@ -83,19 +83,14 @@ namespace TXR1012_GUI
             try
             {
                 ModbusSerialMaster master = ModbusSerialMaster.CreateRtu(serialPort1);
-                serialPort1.Open();
                 master.WriteSingleCoil(slaveAddress, 00000, HVSet);//写高压开关，先不做验证是否写成功
-                //master.WriteSingleRegister(1, startAddress, values);
-                serialPort1.Close();
+                ComStateFlag = true;
             }
             catch (Exception)
             {
-
-                throw;
-            }
-            if (serialPort1.IsOpen)
-            {
-                serialPort1.Close();
+                MessageBox.Show("请检查端口设置", "错误提示");
+                ComStateFlag = false;
+                //throw;
             }
         }
         public void WritekVSet(byte slaveAddress, SerialPort serialPort1)
@@ -103,19 +98,15 @@ namespace TXR1012_GUI
             try
             {
                 ModbusSerialMaster master = ModbusSerialMaster.CreateRtu(serialPort1);
-                serialPort1.Open();
                 ushort kVSetValue = (ushort)(kVSet * 4096 / PowerSupplyType.MaxkV);
                 master.WriteSingleRegister(slaveAddress, 40000, kVSetValue);//写管电压，先不做验证是否写成功
-                serialPort1.Close();
+                ComStateFlag = true;
             }
             catch (Exception)
             {
-
-                throw;
-            }
-            if (serialPort1.IsOpen)
-            {
-                serialPort1.Close();
+                MessageBox.Show("请检查端口设置", "错误提示");
+                ComStateFlag = false;
+                //throw;
             }
         }
         public void WritemASet(byte slaveAddress, SerialPort serialPort1)
@@ -123,19 +114,15 @@ namespace TXR1012_GUI
             try
             {
                 ModbusSerialMaster master = ModbusSerialMaster.CreateRtu(serialPort1);
-                serialPort1.Open();
                 ushort mASetValue = (ushort)(mASet * 4096 / PowerSupplyType.MaxmA);
                 master.WriteSingleRegister(slaveAddress, 40001, mASetValue);//写管电流，先不做验证是否写成功
-                serialPort1.Close();
+                ComStateFlag = true;
             }
             catch (Exception)
             {
-
-                throw;
-            }
-            if (serialPort1.IsOpen)
-            {
-                serialPort1.Close();
+                MessageBox.Show("请检查端口设置", "错误提示");
+                ComStateFlag = false;
+                //throw;
             }
         }
         public void WriteFilPreHeatSet(byte slaveAddress, SerialPort serialPort1)
@@ -143,23 +130,19 @@ namespace TXR1012_GUI
             try
             {
                 ModbusSerialMaster master = ModbusSerialMaster.CreateRtu(serialPort1);
-                serialPort1.Open();
                 if (FilPreHeatSet>PowerSupplyType.MaxFilPreHeat)//最大限定
                 {
                     FilPreHeatSet = PowerSupplyType.MaxFilPreHeat;
                 }
                 ushort FilPreHeatSetValue = (ushort)(FilPreHeatSet * 4096 / 10);//4096对应10A
                 master.WriteSingleRegister(slaveAddress, 40004, FilPreHeatSetValue);//写管电压，先不做验证是否写成功
-                serialPort1.Close();
+                ComStateFlag = true;
             }
             catch (Exception)
             {
-
-                throw;
-            }
-            if (serialPort1.IsOpen)
-            {
-                serialPort1.Close();
+                MessageBox.Show("请检查端口设置", "错误提示");
+                ComStateFlag = false;
+                //throw;
             }
         }
         public void WriteFilLimitSet(byte slaveAddress, SerialPort serialPort1)
@@ -167,23 +150,19 @@ namespace TXR1012_GUI
             try
             {
                 ModbusSerialMaster master = ModbusSerialMaster.CreateRtu(serialPort1);
-                serialPort1.Open();
                 if (FilLimitSet > PowerSupplyType.MaxFilLimit)//不要超过最大值
                 {
                     FilLimitSet = PowerSupplyType.MaxFilLimit;
                 }
                 ushort FilLimitSetValue = (ushort)(FilLimitSet * 4096 / 10);
                 master.WriteSingleRegister(slaveAddress, 40005, FilLimitSetValue);//写管电压，先不做验证是否写成功
-                serialPort1.Close();
+                ComStateFlag = true;
             }
             catch (Exception)
             {
-
-                throw;
-            }
-            if (serialPort1.IsOpen)
-            {
-                serialPort1.Close();
+                MessageBox.Show("请检查端口设置", "错误提示");
+                ComStateFlag = false;
+                //throw;
             }
         }
     }
