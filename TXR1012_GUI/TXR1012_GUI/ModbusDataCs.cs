@@ -57,17 +57,22 @@ namespace TXR1012_GUI
                 HVState = DI[0];
                 ushort[] AI = master.ReadInputRegisters(slaveAddress, 30000, 2);//读取管电压管电流
                 kVRead = (PowerSupplyType.MaxkV - PowerSupplyType.MinkV) * 1.2F * ((float)AI[0] / 4096);
+                kVRead = (float)Math.Round(kVRead,2);
                 mARead = (PowerSupplyType.MaxmA - PowerSupplyType.MinmA) * 1.2F * ((float)AI[1] / 4096);
+                mARead= (float)Math.Round(mARead, 3);
 
                 AI = master.ReadInputRegisters(slaveAddress, 30004, 1);//读取灯丝电流
                 FilamentRead = 10 * 1.2F * (float)AI[0] / 4096;//12A对应4095
+                FilamentRead= (float)Math.Round(FilamentRead, 2);
 
                 AI = master.ReadInputRegisters(slaveAddress, 30010, 1);//读取温度
                 TempRead = (PowerSupplyType.MaxTemp - PowerSupplyType.MinTemp) * (float)AI[0] / 4096;
+                TempRead= (float)Math.Round(TempRead, 2);
 
                 AI = master.ReadInputRegisters(slaveAddress, 30012, 1);//读取电源电压
                 //TempRead = (PowerSupplyType.MaxPowerVoltage - PowerSupplyType.MinPowerVoltage) * (float)AI[0] / 4096;
                 PowerVoltageRead = 43.9F * (float)AI[0] / 4096;
+                PowerVoltageRead= (float)Math.Round(PowerVoltageRead, 2);
                 ComStateFlag = true;
             }
             catch (Exception)

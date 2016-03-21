@@ -9,6 +9,17 @@ using System.Windows.Forms;
 
 using System.IO.Ports;
 
+
+/// <summary>
+/// 还存在的问题
+/// 1.读取显示值的小数位数还没做限制（已处理）
+/// 2.灯丝电流预热的设定值才存在点问题（已处理）
+/// 3.通信指示的灯还没设计（现在用的进度条）
+/// 4.高压开操作没能成功，但是操作写入是成功的，这时候需要写入关断吗？
+/// 5.打开软件初始化与定时读取所设置界面存在差异，应该在做处理，分开用（已处理）
+/// 6.读取间隔时间要限定在400ms以上，程序运行效率目前比较低（目前500ms）
+/// 7.缺少面板控制与上位机控制的切换按钮
+/// </summary>
 namespace TXR1012_GUI
 {
     public partial class FrmMain : Form
@@ -26,6 +37,7 @@ namespace TXR1012_GUI
         {
             InitializeComponent();
             Init();
+            timer1.Start();
         }
         private void Init()
         {
@@ -144,6 +156,76 @@ namespace TXR1012_GUI
             //初始化显示值
         }
         /// <summary>
+        /// 正常读取显示
+        /// </summary>
+        public void NormalDisplay()
+        {
+            //aGauge_kV.Value = 0F;
+            txt_kVSet.Text = aGauge_kV.Value.ToString();
+            //aGauge_mA.Value = 0F;
+            txt_mASet.Text = aGauge_mA.Value.ToString();
+            //txt_FilPreHeat.Text = 0F.ToString();
+            //trackBar_FilLimitSet.Value = 0;
+            //txt_FilLimitSet.Text = ((float)trackBar_FilLimitSet.Value / 10).ToString();
+            //txt_FilPreHeat.Text = ((float)trackBar_FilLimitSet.Value / 10).ToString();
+            //label_FilLimitHiden.Visible = false;
+            label_kV.Text = MData.kVRead.ToString();
+            label_mA.Text = MData.mARead.ToString();
+            label_Power.Text = MData.PowerVoltageRead.ToString() + "V";
+            label_Temp.Text = MData.TempRead.ToString() + "℃";
+            label_Filment.Text = MData.FilamentRead.ToString();
+            //状态显示初始化
+            if (MData.HVState)
+            {
+                ovalShape_OpenHV.FillColor = Color.Red;
+                ovalShape_CloseHV.FillColor = Color.Gray;
+            }
+            else
+            {
+                ovalShape_OpenHV.FillColor = Color.Gray;
+                ovalShape_CloseHV.FillColor = Color.Lime;
+            }
+            label_InterLockOK.BackColor = Color.GreenYellow;
+            label_InterLockError.BackColor = Color.Gray;
+            label_StateOK.BackColor = Color.GreenYellow;
+            label_StateError.BackColor = Color.Gray;
+        }
+        /// <summary>
+        /// 读取错误时显示
+        /// </summary>
+        public void ErrorDisplay()
+        {
+            aGauge_kV.Value = 0F;
+            txt_kVSet.Text = aGauge_kV.Value.ToString();
+            aGauge_mA.Value = 0F;
+            txt_mASet.Text = aGauge_mA.Value.ToString();
+            txt_FilPreHeat.Text = 0F.ToString();
+            trackBar_FilLimitSet.Value = 0;
+            txt_FilLimitSet.Text = trackBar_FilLimitSet.Value.ToString();
+            txt_FilPreHeat.Text = ((float)trackBar_FilLimitSet.Value / 10).ToString();
+            label_FilLimitHiden.Visible = false;
+            label_kV.Text = "----";
+            label_mA.Text = "----";
+            label_Power.Text = "----" + "V";
+            label_Temp.Text = "----" + "℃";
+            label_Filment.Text = "----";
+            //状态显示初始化
+            //if (MData.HVState)
+            //{
+            ovalShape_OpenHV.FillColor = Color.Gray;
+            ovalShape_CloseHV.FillColor = Color.Gray;
+            //}
+            //else
+            //{
+            //    ovalShape_OpenHV.FillColor = Color.Gray;
+            //    ovalShape_CloseHV.FillColor = Color.Lime;
+            //}
+            label_InterLockOK.BackColor = Color.Gray;
+            label_InterLockError.BackColor = Color.Gray;
+            label_StateOK.BackColor = Color.Gray;
+            label_StateError.BackColor = Color.Gray;
+        }
+        /// <summary>
         /// 求时间差方法
         /// </summary>
         /// <param name="dateBegin">开始时间</param>
@@ -169,15 +251,39 @@ namespace TXR1012_GUI
 
         private void timer1_Tick(object sender, EventArgs e)
         {
+            try
+            {
+                MData.ReadAll(SlaveAddress,myserialPort);
+                NormalDisplay();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("读取从机数据操作失败，请检查串口设置！", "提示！");
+                progressBar1.Value = 0;
+                ErrorDisplay();
+                //throw;
+            }
             //timer1.Stop();
             //return;
+            //显示刷新界面数据
+
+            //通信状态指示条刷新
+            if (progressBar1.Value == 100)
+            {
+                progressBar1.Value = 0;
+            }
+            else
+            {
+                progressBar1.Value += 5;
+            }
+            
         }
 
         private void trackBar_FilLimitSet_Scroll(object sender, EventArgs e)
         {
             //label_FilLimitHiden.Visible = true;//不需要了，直接在文本框就显示就好了
             txt_FilLimitSet.Text = ((float)trackBar_FilLimitSet.Value / 10).ToString();
-            label_FilLimitHiden.Text = txt_FilLimitSet.Text;
+            //label_FilLimitHiden.Text = txt_FilLimitSet.Text;
             //label_FilLimitHiden.Visible = false;
         }
 
@@ -192,12 +298,13 @@ namespace TXR1012_GUI
             txt_kVSet.Text = aGauge_kV.Value.ToString();
         }
 
+        #region 设定操作按钮
         private void btn_kVSet_Click(object sender, EventArgs e)
         {
             try
             {
                 MData.kVSet = float.Parse(txt_kVSet.Text.Trim());//从机地址要本文框验证才行
-                if ((MData.kVSet>TXR1012.MaxkV)&&(MData.kVSet<TXR1012.MinkV))
+                if ((MData.kVSet > TXR1012.MaxkV) && (MData.kVSet < TXR1012.MinkV))
                 {
                     MessageBox.Show("设定值超限，请重新设定！", "提示！");
                     return;//一定要加这个，这样才能返回重新设置的界面
@@ -210,7 +317,7 @@ namespace TXR1012_GUI
             }
             try
             {
-                MData.WritekVSet(SlaveAddress,myserialPort);
+                MData.WritekVSet(SlaveAddress, myserialPort);
                 aGauge_kV.Value = MData.kVSet;
             }
             catch (Exception)
@@ -220,6 +327,159 @@ namespace TXR1012_GUI
                 //throw;  
             }
         }
+        private void btn_mASet_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                MData.mASet = float.Parse(txt_mASet.Text.Trim());//从机地址要本文框验证才行
+                if ((MData.mASet > TXR1012.MaxmA) && (MData.mASet < TXR1012.MinmA))
+                {
+                    MessageBox.Show("设定值超限，请重新设定！", "提示！");
+                    return;//一定要加这个，这样才能返回重新设置的界面
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("请输入正确的设定值", "提示！");
+                return;//一定要加这个，这样才能返回重新设置的界面
+            }
+            try
+            {
+                MData.WritemASet(SlaveAddress, myserialPort);
+                aGauge_mA.Value = MData.mASet;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("设定操作失败，请检查串口设置！", "提示！");
+                return;//一定要加这个，这样才能返回重新设置的界面
+                //throw;  
+            }
+        }
+        private void btn_FilPreHeatSet_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                MData.FilPreHeatSet = float.Parse(txt_FilPreHeat.Text.Trim());//从机地址要本文框验证才行
+                if ((MData.FilPreHeatSet > TXR1012.MaxFilPreHeat) && (MData.FilPreHeatSet < TXR1012.MinFilPreHeat))
+                {
+                    MessageBox.Show("设定值超限，请重新设定！", "提示！");
+                    return;//一定要加这个，这样才能返回重新设置的界面
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("请输入正确的设定值", "提示！");
+                return;//一定要加这个，这样才能返回重新设置的界面
+            }
+            try
+            {
+                MData.WriteFilPreHeatSet(SlaveAddress, myserialPort);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("设定操作失败，请检查串口设置！", "提示！");
+                return;//一定要加这个，这样才能返回重新设置的界面
+                //throw;  
+            }
+        }
+        private void btn_FilLimitSet_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                MData.FilLimitSet = float.Parse(txt_FilLimitSet.Text.Trim());//从机地址要本文框验证才行
+                trackBar_FilLimitSet.Value = (int)(MData.FilLimitSet*10);
+                if ((MData.FilLimitSet > TXR1012.MaxFilLimit) && (MData.FilLimitSet < TXR1012.MinFilLimit))
+                {
+                    MessageBox.Show("设定值超限，请重新设定！", "提示！");
+                    return;//一定要加这个，这样才能返回重新设置的界面
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("请输入正确的设定值", "提示！");
+                return;//一定要加这个，这样才能返回重新设置的界面
+            }
+            //try
+            //{
+            //    MData.WritemASet(SlaveAddress, myserialPort);
+            //    trackBar_FilLimitSet.Value = (Int32)(MData.mASet * 10);
+            //}
+            //catch (Exception)
+            //{
+            //    MessageBox.Show("设定操作失败，请检查串口设置！", "提示！");
+            //    return;//一定要加这个，这样才能返回重新设置的界面
+            //    //throw;  
+            //}
+        }
+        private void btn_OpenHV_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                MData.ReadAll(SlaveAddress, myserialPort);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("串口操作失败，请检查串口设置！", "提示！");
+                return;//一定要加这个，这样才能返回重新设置的界面
+                //throw;
+            }
+            if (MData.HVState)
+            {
+                return;
+            }
+            else
+            {
+                try
+                {
+                    MData.HVSet = true;
+                    MData.WriteHVSet(SlaveAddress, myserialPort);
+                    ovalShape_OpenHV.FillColor = Color.Red;
+                    ovalShape_CloseHV.FillColor = Color.Gray;
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("设定操作失败，请检查串口设置！", "提示！");
+                    MData.HVSet = false;
+                    return;//一定要加这个，这样才能返回重新设置的界面
+                           //throw;  
+                }
+            }
+        }
+        private void btn_CloseHV_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                MData.ReadAll(SlaveAddress, myserialPort);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("串口操作失败，请检查串口设置！", "提示！");
+                return;//一定要加这个，这样才能返回重新设置的界面
+                //throw;
+            }
+            if (!MData.HVState)
+            {
+                return;
+            }
+            else
+            {
+                try
+                {
+                    MData.HVSet = false;
+                    MData.WriteHVSet(SlaveAddress, myserialPort);
+                    ovalShape_OpenHV.FillColor = Color.Gray;
+                    ovalShape_CloseHV.FillColor = Color.Lime;
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("设定操作失败，请检查串口设置！", "提示！");
+                    MData.HVSet = true;
+                    return;//一定要加这个，这样才能返回重新设置的界面
+                           //throw;  
+                }
+            }
+        }
+        #endregion
 
         #region 鼠标调节电压、电流 设定值
         private bool _MouseIsDown = false;
@@ -342,6 +602,8 @@ namespace TXR1012_GUI
                 _MouseIsDown = false;
             }
         }
+
         #endregion
+
     }
 }

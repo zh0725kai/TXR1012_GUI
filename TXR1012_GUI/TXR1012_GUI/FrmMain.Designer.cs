@@ -75,6 +75,8 @@
             this.btn_FilLimitSet = new System.Windows.Forms.Button();
             this.label12 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.label1 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
@@ -182,8 +184,8 @@
             // 退出QToolStripMenuItem
             // 
             this.退出QToolStripMenuItem.Name = "退出QToolStripMenuItem";
-            this.退出QToolStripMenuItem.Size = new System.Drawing.Size(93, 24);
-            this.退出QToolStripMenuItem.Text = "退出（&Q）";
+            this.退出QToolStripMenuItem.Size = new System.Drawing.Size(73, 24);
+            this.退出QToolStripMenuItem.Text = "退出(&Q)";
             // 
             // statusStrip1
             // 
@@ -424,6 +426,7 @@
             this.btn_mASet.TabIndex = 6;
             this.btn_mASet.Text = "电流设定";
             this.btn_mASet.UseVisualStyleBackColor = false;
+            this.btn_mASet.Click += new System.EventHandler(this.btn_mASet_Click);
             // 
             // aGauge_mA
             // 
@@ -599,6 +602,7 @@
             this.btn_FilPreHeatSet.TabIndex = 6;
             this.btn_FilPreHeatSet.Text = "灯丝预热设定";
             this.btn_FilPreHeatSet.UseVisualStyleBackColor = true;
+            this.btn_FilPreHeatSet.Click += new System.EventHandler(this.btn_FilPreHeatSet_Click);
             // 
             // label7
             // 
@@ -725,6 +729,7 @@
             this.btn_FilLimitSet.TabIndex = 6;
             this.btn_FilLimitSet.Text = "灯丝限幅设定";
             this.btn_FilLimitSet.UseVisualStyleBackColor = true;
+            this.btn_FilLimitSet.Click += new System.EventHandler(this.btn_FilLimitSet_Click);
             // 
             // label12
             // 
@@ -739,6 +744,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.progressBar1);
+            this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.label18);
             this.groupBox2.Controls.Add(this.label17);
             this.groupBox2.Controls.Add(this.label16);
@@ -756,10 +763,27 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "系统状态";
             // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(86, 172);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(77, 14);
+            this.progressBar1.TabIndex = 5;
+            this.progressBar1.Value = 20;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 171);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(75, 15);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "通信状态:";
+            // 
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(6, 151);
+            this.label18.Location = new System.Drawing.Point(6, 144);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(75, 15);
             this.label18.TabIndex = 4;
@@ -768,7 +792,7 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(6, 123);
+            this.label17.Location = new System.Drawing.Point(6, 116);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(75, 15);
             this.label17.TabIndex = 4;
@@ -798,7 +822,7 @@
             this.label_InterLockError.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label_InterLockError.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_InterLockError.ForeColor = System.Drawing.Color.GreenYellow;
-            this.label_InterLockError.Location = new System.Drawing.Point(136, 144);
+            this.label_InterLockError.Location = new System.Drawing.Point(136, 137);
             this.label_InterLockError.Name = "label_InterLockError";
             this.label_InterLockError.Size = new System.Drawing.Size(26, 26);
             this.label_InterLockError.TabIndex = 3;
@@ -810,7 +834,7 @@
             this.label_InterLockOK.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label_InterLockOK.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_InterLockOK.ForeColor = System.Drawing.Color.GreenYellow;
-            this.label_InterLockOK.Location = new System.Drawing.Point(87, 144);
+            this.label_InterLockOK.Location = new System.Drawing.Point(87, 137);
             this.label_InterLockOK.Name = "label_InterLockOK";
             this.label_InterLockOK.Size = new System.Drawing.Size(26, 26);
             this.label_InterLockOK.TabIndex = 3;
@@ -822,7 +846,7 @@
             this.label_StateError.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label_StateError.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_StateError.ForeColor = System.Drawing.Color.GreenYellow;
-            this.label_StateError.Location = new System.Drawing.Point(136, 115);
+            this.label_StateError.Location = new System.Drawing.Point(136, 108);
             this.label_StateError.Name = "label_StateError";
             this.label_StateError.Size = new System.Drawing.Size(26, 26);
             this.label_StateError.TabIndex = 3;
@@ -834,7 +858,7 @@
             this.label_StateOK.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label_StateOK.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_StateOK.ForeColor = System.Drawing.Color.GreenYellow;
-            this.label_StateOK.Location = new System.Drawing.Point(87, 115);
+            this.label_StateOK.Location = new System.Drawing.Point(87, 108);
             this.label_StateOK.Name = "label_StateOK";
             this.label_StateOK.Size = new System.Drawing.Size(26, 26);
             this.label_StateOK.TabIndex = 3;
@@ -907,6 +931,7 @@
             this.btn_OpenHV.TabIndex = 0;
             this.btn_OpenHV.Text = "高压开";
             this.btn_OpenHV.UseVisualStyleBackColor = true;
+            this.btn_OpenHV.Click += new System.EventHandler(this.btn_OpenHV_Click);
             // 
             // button5
             // 
@@ -925,6 +950,7 @@
             this.btn_CloseHV.TabIndex = 0;
             this.btn_CloseHV.Text = "高压关";
             this.btn_CloseHV.UseVisualStyleBackColor = true;
+            this.btn_CloseHV.Click += new System.EventHandler(this.btn_CloseHV_Click);
             // 
             // shapeContainer1
             // 
@@ -958,6 +984,7 @@
             // 
             // timer1
             // 
+            this.timer1.Interval = 500;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // FrmMain
@@ -1068,6 +1095,8 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel_BaudRate;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel_RunTime;
+        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.Label label1;
     }
 }
 
