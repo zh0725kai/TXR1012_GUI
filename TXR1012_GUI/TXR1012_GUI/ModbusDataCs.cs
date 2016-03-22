@@ -50,29 +50,54 @@ namespace TXR1012_GUI
         {
             try
             {
+                //ModbusSerialMaster master = ModbusSerialMaster.CreateRtu(serialPort1);
+                ////serialPort1.Open(); //开机就打开
+                //master.Transport.ReadTimeout = 300;//设置端口超时时间，单位ms
+                //bool[] DI = master.ReadInputs(slaveAddress, 10000, 1);//读取高压开关状态
+                //HVState = DI[0];
+                //ushort[] AI = master.ReadInputRegisters(slaveAddress, 30000, 2);//读取管电压管电流
+                //kVRead = (PowerSupplyType.MaxkV - PowerSupplyType.MinkV) * 1.2F * ((float)AI[0] / 4096);
+                //kVRead = (float)Math.Round(kVRead,2);
+                //mARead = (PowerSupplyType.MaxmA - PowerSupplyType.MinmA) * 1.2F * ((float)AI[1] / 4096);
+                //mARead= (float)Math.Round(mARead, 3);
+
+                //AI = master.ReadInputRegisters(slaveAddress, 30004, 1);//读取灯丝电流
+                //FilamentRead = 10 * 1.2F * (float)AI[0] / 4096;//12A对应4095
+                //FilamentRead= (float)Math.Round(FilamentRead, 2);
+
+                //AI = master.ReadInputRegisters(slaveAddress, 30010, 1);//读取温度
+                //TempRead = (PowerSupplyType.MaxTemp - PowerSupplyType.MinTemp) * (float)AI[0] / 4096;
+                //TempRead= (float)Math.Round(TempRead, 2);
+
+                //AI = master.ReadInputRegisters(slaveAddress, 30012, 1);//读取电源电压
+                ////TempRead = (PowerSupplyType.MaxPowerVoltage - PowerSupplyType.MinPowerVoltage) * (float)AI[0] / 4096;
+                //PowerVoltageRead = 43.9F * (float)AI[0] / 4096;
+                //PowerVoltageRead= (float)Math.Round(PowerVoltageRead, 2);
+                //ComStateFlag = true;
+
                 ModbusSerialMaster master = ModbusSerialMaster.CreateRtu(serialPort1);
                 //serialPort1.Open(); //开机就打开
                 master.Transport.ReadTimeout = 300;//设置端口超时时间，单位ms
                 bool[] DI = master.ReadInputs(slaveAddress, 10000, 1);//读取高压开关状态
                 HVState = DI[0];
-                ushort[] AI = master.ReadInputRegisters(slaveAddress, 30000, 2);//读取管电压管电流
+                ushort[] AI = master.ReadInputRegisters(slaveAddress, 30000, 13);//读取管电压管电流
                 kVRead = (PowerSupplyType.MaxkV - PowerSupplyType.MinkV) * 1.2F * ((float)AI[0] / 4096);
-                kVRead = (float)Math.Round(kVRead,2);
+                kVRead = (float)Math.Round(kVRead, 2);
                 mARead = (PowerSupplyType.MaxmA - PowerSupplyType.MinmA) * 1.2F * ((float)AI[1] / 4096);
-                mARead= (float)Math.Round(mARead, 3);
+                mARead = (float)Math.Round(mARead, 3);
 
-                AI = master.ReadInputRegisters(slaveAddress, 30004, 1);//读取灯丝电流
-                FilamentRead = 10 * 1.2F * (float)AI[0] / 4096;//12A对应4095
-                FilamentRead= (float)Math.Round(FilamentRead, 2);
+                //AI = master.ReadInputRegisters(slaveAddress, 30004, 1);//读取灯丝电流
+                FilamentRead = 10 * 1.2F * (float)AI[4] / 4096;//12A对应4095
+                FilamentRead = (float)Math.Round(FilamentRead, 2);
 
-                AI = master.ReadInputRegisters(slaveAddress, 30010, 1);//读取温度
-                TempRead = (PowerSupplyType.MaxTemp - PowerSupplyType.MinTemp) * (float)AI[0] / 4096;
-                TempRead= (float)Math.Round(TempRead, 2);
+                //AI = master.ReadInputRegisters(slaveAddress, 30010, 1);//读取温度
+                TempRead = PowerSupplyType.MinTemp+(PowerSupplyType.MaxTemp - PowerSupplyType.MinTemp) * (float)AI[10] / 4096;
+                TempRead = (float)Math.Round(TempRead, 2);
 
-                AI = master.ReadInputRegisters(slaveAddress, 30012, 1);//读取电源电压
+                //AI = master.ReadInputRegisters(slaveAddress, 30012, 1);//读取电源电压
                 //TempRead = (PowerSupplyType.MaxPowerVoltage - PowerSupplyType.MinPowerVoltage) * (float)AI[0] / 4096;
-                PowerVoltageRead = 43.9F * (float)AI[0] / 4096;
-                PowerVoltageRead= (float)Math.Round(PowerVoltageRead, 2);
+                PowerVoltageRead = 43.9F * (float)AI[12] / 4096;
+                PowerVoltageRead = (float)Math.Round(PowerVoltageRead, 2);
                 ComStateFlag = true;
             }
             catch (Exception)
