@@ -46,9 +46,10 @@
             // 
             // btn_OK
             // 
-            this.btn_OK.Location = new System.Drawing.Point(225, 207);
+            this.btn_OK.Location = new System.Drawing.Point(169, 150);
+            this.btn_OK.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btn_OK.Name = "btn_OK";
-            this.btn_OK.Size = new System.Drawing.Size(75, 23);
+            this.btn_OK.Size = new System.Drawing.Size(70, 36);
             this.btn_OK.TabIndex = 0;
             this.btn_OK.Text = "确定";
             this.btn_OK.UseVisualStyleBackColor = true;
@@ -56,9 +57,10 @@
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(17, 26);
+            this.label1.Location = new System.Drawing.Point(13, 21);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(89, 23);
+            this.label1.Size = new System.Drawing.Size(67, 18);
             this.label1.TabIndex = 1;
             this.label1.Text = "从机地址:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -66,25 +68,28 @@
             // txt_SlaveAddress
             // 
             this.txt_SlaveAddress.Enabled = false;
-            this.txt_SlaveAddress.Location = new System.Drawing.Point(112, 24);
+            this.txt_SlaveAddress.Location = new System.Drawing.Point(84, 19);
+            this.txt_SlaveAddress.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txt_SlaveAddress.Name = "txt_SlaveAddress";
-            this.txt_SlaveAddress.Size = new System.Drawing.Size(77, 25);
+            this.txt_SlaveAddress.Size = new System.Drawing.Size(59, 21);
             this.txt_SlaveAddress.TabIndex = 2;
             this.txt_SlaveAddress.Text = "1";
             // 
             // cbo_COMNum
             // 
             this.cbo_COMNum.FormattingEnabled = true;
-            this.cbo_COMNum.Location = new System.Drawing.Point(112, 62);
+            this.cbo_COMNum.Location = new System.Drawing.Point(84, 50);
+            this.cbo_COMNum.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cbo_COMNum.Name = "cbo_COMNum";
-            this.cbo_COMNum.Size = new System.Drawing.Size(77, 23);
+            this.cbo_COMNum.Size = new System.Drawing.Size(59, 20);
             this.cbo_COMNum.TabIndex = 3;
             // 
             // label2
             // 
-            this.label2.Location = new System.Drawing.Point(17, 62);
+            this.label2.Location = new System.Drawing.Point(13, 50);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(89, 20);
+            this.label2.Size = new System.Drawing.Size(67, 16);
             this.label2.TabIndex = 1;
             this.label2.Text = "COM端口号:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -97,17 +102,19 @@
             "9600",
             "19200",
             "115200"});
-            this.cbo_BaudRate.Location = new System.Drawing.Point(112, 98);
+            this.cbo_BaudRate.Location = new System.Drawing.Point(84, 78);
+            this.cbo_BaudRate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cbo_BaudRate.Name = "cbo_BaudRate";
-            this.cbo_BaudRate.Size = new System.Drawing.Size(77, 23);
+            this.cbo_BaudRate.Size = new System.Drawing.Size(59, 20);
             this.cbo_BaudRate.TabIndex = 3;
             this.cbo_BaudRate.Text = "9600";
             // 
             // label3
             // 
-            this.label3.Location = new System.Drawing.Point(17, 95);
+            this.label3.Location = new System.Drawing.Point(13, 76);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(89, 27);
+            this.label3.Size = new System.Drawing.Size(67, 22);
             this.label3.TabIndex = 1;
             this.label3.Text = "波特率:";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -116,26 +123,29 @@
             // 
             this.cbo_DataBits.Enabled = false;
             this.cbo_DataBits.FormattingEnabled = true;
-            this.cbo_DataBits.Location = new System.Drawing.Point(112, 135);
+            this.cbo_DataBits.Location = new System.Drawing.Point(84, 108);
+            this.cbo_DataBits.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cbo_DataBits.Name = "cbo_DataBits";
-            this.cbo_DataBits.Size = new System.Drawing.Size(77, 23);
+            this.cbo_DataBits.Size = new System.Drawing.Size(59, 20);
             this.cbo_DataBits.TabIndex = 3;
             this.cbo_DataBits.Text = "8";
             // 
             // label4
             // 
-            this.label4.Location = new System.Drawing.Point(23, 135);
+            this.label4.Location = new System.Drawing.Point(17, 108);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(76, 20);
+            this.label4.Size = new System.Drawing.Size(57, 16);
             this.label4.TabIndex = 1;
             this.label4.Text = "数据位:";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label5
             // 
-            this.label5.Location = new System.Drawing.Point(23, 171);
+            this.label5.Location = new System.Drawing.Point(17, 137);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(76, 20);
+            this.label5.Size = new System.Drawing.Size(57, 16);
             this.label5.TabIndex = 1;
             this.label5.Text = "校验位:";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -144,17 +154,19 @@
             // 
             this.cbo_Parity.Enabled = false;
             this.cbo_Parity.FormattingEnabled = true;
-            this.cbo_Parity.Location = new System.Drawing.Point(112, 172);
+            this.cbo_Parity.Location = new System.Drawing.Point(84, 138);
+            this.cbo_Parity.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cbo_Parity.Name = "cbo_Parity";
-            this.cbo_Parity.Size = new System.Drawing.Size(77, 23);
+            this.cbo_Parity.Size = new System.Drawing.Size(59, 20);
             this.cbo_Parity.TabIndex = 3;
             this.cbo_Parity.Text = "None";
             // 
             // label6
             // 
-            this.label6.Location = new System.Drawing.Point(23, 206);
+            this.label6.Location = new System.Drawing.Point(17, 165);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(76, 20);
+            this.label6.Size = new System.Drawing.Size(57, 16);
             this.label6.TabIndex = 1;
             this.label6.Text = "停止位:";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -163,17 +175,19 @@
             // 
             this.cbo_StopBit.Enabled = false;
             this.cbo_StopBit.FormattingEnabled = true;
-            this.cbo_StopBit.Location = new System.Drawing.Point(112, 207);
+            this.cbo_StopBit.Location = new System.Drawing.Point(84, 166);
+            this.cbo_StopBit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cbo_StopBit.Name = "cbo_StopBit";
-            this.cbo_StopBit.Size = new System.Drawing.Size(77, 23);
+            this.cbo_StopBit.Size = new System.Drawing.Size(59, 20);
             this.cbo_StopBit.TabIndex = 3;
             this.cbo_StopBit.Text = "1";
             // 
             // btn_AdvanceSet
             // 
-            this.btn_AdvanceSet.Location = new System.Drawing.Point(225, 26);
+            this.btn_AdvanceSet.Location = new System.Drawing.Point(169, 21);
+            this.btn_AdvanceSet.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btn_AdvanceSet.Name = "btn_AdvanceSet";
-            this.btn_AdvanceSet.Size = new System.Drawing.Size(75, 23);
+            this.btn_AdvanceSet.Size = new System.Drawing.Size(70, 30);
             this.btn_AdvanceSet.TabIndex = 0;
             this.btn_AdvanceSet.Text = "高级设置";
             this.btn_AdvanceSet.UseVisualStyleBackColor = true;
@@ -181,9 +195,9 @@
             // 
             // FrmCOMSet
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(335, 246);
+            this.ClientSize = new System.Drawing.Size(253, 198);
             this.Controls.Add(this.cbo_StopBit);
             this.Controls.Add(this.cbo_Parity);
             this.Controls.Add(this.cbo_BaudRate);
@@ -198,6 +212,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btn_AdvanceSet);
             this.Controls.Add(this.btn_OK);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "FrmCOMSet";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "[COM端口设置]";

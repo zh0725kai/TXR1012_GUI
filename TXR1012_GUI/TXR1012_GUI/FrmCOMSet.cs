@@ -51,12 +51,14 @@ namespace TXR1012_GUI
 
         private void btn_OK_Click(object sender, EventArgs e)
         {
+            FrmMain.myserialPort.Close();
             FrmMain.myserialPort.PortName = cbo_COMNum.Text.Trim();
             FrmMain.myserialPort.BaudRate = Convert.ToInt32(cbo_BaudRate.Text.Trim());
             FrmMain.myserialPort.Parity = (Parity)cbo_Parity.SelectedIndex;
             FrmMain.myserialPort.StopBits = (StopBits)cbo_StopBit.SelectedIndex;
             FrmMain.myserialPort.DataBits = Convert.ToInt32(cbo_DataBits.Text.Trim());
             //验证txt_SlaveAddress为数字
+            //FrmMain.statusStrip1.
 
             try
             {

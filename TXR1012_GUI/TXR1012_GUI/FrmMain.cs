@@ -11,7 +11,7 @@ using System.IO.Ports;
 
 
 /// <summary>
-/// 还存在的问题
+/// 遇到的以及还存在的问题
 /// 1.读取显示值的小数位数还没做限制（已处理）
 /// 2.灯丝电流预热的设定值才存在点问题（已处理）
 /// 3.通信指示的灯还没设计（现在用的进度条）
@@ -21,6 +21,11 @@ using System.IO.Ports;
 /// 7.缺少面板控制与上位机控制的切换按钮
 /// 8.温度显示的计算还有问题(已解决)
 /// 9.状态栏、菜单栏设置还存在些问题
+/// 10.Modbus读取失败要及时关掉Timer1定期器，不然反复弹窗（已解决）
+/// 11.串口设置之后要更新状态栏，串口设置之后应该也要验证串口的可用性（现在还会存在打开已被占用并打开的串口，这时候会出错），
+/// 12.通讯失败后Timer1关闭后，如何检测并自动连接串口通讯？
+/// 13.应该先进入主界面然后弹出串口设置界面，现在是先出现串口设置界面，然后才出现的主界面
+/// 14.软件运行时间的显示还没有正确设计
 /// </summary>
 namespace TXR1012_GUI
 {
@@ -32,8 +37,9 @@ namespace TXR1012_GUI
         public static Byte SlaveAddress;
         public static DateTime StartDateTime;
         public static DateTime HVStartDataTime;
+        //public static StatusStrip statusStrip1 = new StatusStrip();
 
-       
+
 
         public FrmMain()
         {
@@ -247,24 +253,35 @@ namespace TXR1012_GUI
         {
             FrmCOMSet frmComSet = new FrmCOMSet();
             frmComSet.ShowDialog();
+            MessageBox.Show("这里会被执行吗？结果好像是会的","？");//在这里更新状态栏、打开串口、开启定时器等
         }
 
         #endregion
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            try
+            //try
+            //{
+            MData.ReadAll(SlaveAddress,myserialPort);
+            if (MData.ComStateFlag)
             {
-                MData.ReadAll(SlaveAddress,myserialPort);
                 NormalDisplay();
             }
-            catch (Exception)
+                //NormalDisplay();
+            //}
+            //catch (Exception)
+            //{
+            else
             {
-                MessageBox.Show("读取从机数据操作失败，请检查串口设置！", "提示！");
+                timer1.Stop();
+                myserialPort.Close();
                 progressBar1.Value = 0;
                 ErrorDisplay();
-                //throw;
+                MessageBox.Show("读取从机数据操作失败，请检查串口设置！", "提示！");   
             }
+               
+            //    //throw;
+            //}
             //timer1.Stop();
             //return;
             //显示刷新界面数据

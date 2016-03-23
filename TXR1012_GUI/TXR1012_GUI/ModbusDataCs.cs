@@ -102,7 +102,7 @@ namespace TXR1012_GUI
             }
             catch (Exception)
             {
-                MessageBox.Show("请检查端口设置","错误提示");
+                //MessageBox.Show("请检查端口设置","错误提示");
                 ComStateFlag = false;
                 //throw;
             }
