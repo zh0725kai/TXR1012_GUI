@@ -26,3 +26,5 @@ F:\360云盘\learn\softwareLearn\vs\GitHub\TXR1012_GUI\TXR1012_GUI\TXR1012_GUI\b
 F:\360云盘\learn\softwareLearn\vs\GitHub\TXR1012_GUI\TXR1012_GUI\TXR1012_GUI\bin\Debug\Unme.Common.dll
 F:\360云盘\learn\softwareLearn\vs\GitHub\TXR1012_GUI\TXR1012_GUI\TXR1012_GUI\obj\Debug\TXR1012_GUI.csprojResolveAssemblyReference.cache
 F:\360云盘\learn\softwareLearn\vs\GitHub\TXR1012_GUI\TXR1012_GUI\TXR1012_GUI\obj\Debug\TXR1012_GUI.FrmCOMSet.resources
+F:\360云盘\learn\softwareLearn\vs\GitHub\TXR1012_GUI\TXR1012_GUI\TXR1012_GUI\obj\Debug\TXR1012_GUI.FrmAbout.resources
+F:\360云盘\learn\softwareLearn\vs\GitHub\TXR1012_GUI\TXR1012_GUI\TXR1012_GUI\obj\Debug\TXR1012_GUI.FrmIntruction.resources

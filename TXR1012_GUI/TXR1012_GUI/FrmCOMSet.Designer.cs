@@ -47,7 +47,7 @@
             // btn_OK
             // 
             this.btn_OK.Location = new System.Drawing.Point(169, 150);
-            this.btn_OK.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_OK.Margin = new System.Windows.Forms.Padding(2);
             this.btn_OK.Name = "btn_OK";
             this.btn_OK.Size = new System.Drawing.Size(70, 36);
             this.btn_OK.TabIndex = 0;
@@ -69,7 +69,7 @@
             // 
             this.txt_SlaveAddress.Enabled = false;
             this.txt_SlaveAddress.Location = new System.Drawing.Point(84, 19);
-            this.txt_SlaveAddress.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txt_SlaveAddress.Margin = new System.Windows.Forms.Padding(2);
             this.txt_SlaveAddress.Name = "txt_SlaveAddress";
             this.txt_SlaveAddress.Size = new System.Drawing.Size(59, 21);
             this.txt_SlaveAddress.TabIndex = 2;
@@ -79,7 +79,7 @@
             // 
             this.cbo_COMNum.FormattingEnabled = true;
             this.cbo_COMNum.Location = new System.Drawing.Point(84, 50);
-            this.cbo_COMNum.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbo_COMNum.Margin = new System.Windows.Forms.Padding(2);
             this.cbo_COMNum.Name = "cbo_COMNum";
             this.cbo_COMNum.Size = new System.Drawing.Size(59, 20);
             this.cbo_COMNum.TabIndex = 3;
@@ -103,7 +103,7 @@
             "19200",
             "115200"});
             this.cbo_BaudRate.Location = new System.Drawing.Point(84, 78);
-            this.cbo_BaudRate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbo_BaudRate.Margin = new System.Windows.Forms.Padding(2);
             this.cbo_BaudRate.Name = "cbo_BaudRate";
             this.cbo_BaudRate.Size = new System.Drawing.Size(59, 20);
             this.cbo_BaudRate.TabIndex = 3;
@@ -124,7 +124,7 @@
             this.cbo_DataBits.Enabled = false;
             this.cbo_DataBits.FormattingEnabled = true;
             this.cbo_DataBits.Location = new System.Drawing.Point(84, 108);
-            this.cbo_DataBits.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbo_DataBits.Margin = new System.Windows.Forms.Padding(2);
             this.cbo_DataBits.Name = "cbo_DataBits";
             this.cbo_DataBits.Size = new System.Drawing.Size(59, 20);
             this.cbo_DataBits.TabIndex = 3;
@@ -155,7 +155,7 @@
             this.cbo_Parity.Enabled = false;
             this.cbo_Parity.FormattingEnabled = true;
             this.cbo_Parity.Location = new System.Drawing.Point(84, 138);
-            this.cbo_Parity.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbo_Parity.Margin = new System.Windows.Forms.Padding(2);
             this.cbo_Parity.Name = "cbo_Parity";
             this.cbo_Parity.Size = new System.Drawing.Size(59, 20);
             this.cbo_Parity.TabIndex = 3;
@@ -176,7 +176,7 @@
             this.cbo_StopBit.Enabled = false;
             this.cbo_StopBit.FormattingEnabled = true;
             this.cbo_StopBit.Location = new System.Drawing.Point(84, 166);
-            this.cbo_StopBit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbo_StopBit.Margin = new System.Windows.Forms.Padding(2);
             this.cbo_StopBit.Name = "cbo_StopBit";
             this.cbo_StopBit.Size = new System.Drawing.Size(59, 20);
             this.cbo_StopBit.TabIndex = 3;
@@ -185,7 +185,7 @@
             // btn_AdvanceSet
             // 
             this.btn_AdvanceSet.Location = new System.Drawing.Point(169, 21);
-            this.btn_AdvanceSet.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_AdvanceSet.Margin = new System.Windows.Forms.Padding(2);
             this.btn_AdvanceSet.Name = "btn_AdvanceSet";
             this.btn_AdvanceSet.Size = new System.Drawing.Size(70, 30);
             this.btn_AdvanceSet.TabIndex = 0;
@@ -212,7 +212,9 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btn_AdvanceSet);
             this.Controls.Add(this.btn_OK);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Margin = new System.Windows.Forms.Padding(2);
+            this.MaximizeBox = false;
             this.Name = "FrmCOMSet";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "[COM端口设置]";

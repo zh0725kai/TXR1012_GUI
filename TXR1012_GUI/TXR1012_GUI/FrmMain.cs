@@ -18,14 +18,14 @@ using System.IO.Ports;
 /// 4.高压开操作没能成功，但是操作写入是成功的，这时候需要写入关断吗？
 /// 5.打开软件初始化与定时读取所设置界面存在差异，应该在做处理，分开用（已处理）
 /// 6.读取间隔时间要限定在400ms以上，程序运行效率目前比较低（目前500ms）
-/// 7.缺少面板控制与上位机控制的切换按钮
+/// 7.缺少面板控制与上位机控制的切换按钮（这个型号可以不需要）
 /// 8.温度显示的计算还有问题(已解决)
 /// 9.状态栏、菜单栏设置还存在些问题
 /// 10.Modbus读取失败要及时关掉Timer1定期器，不然反复弹窗（已解决）
-/// 11.串口设置之后要更新状态栏，串口设置之后应该也要验证串口的可用性（现在还会存在打开已被占用并打开的串口，这时候会出错），
-/// 12.通讯失败后Timer1关闭后，如何检测并自动连接串口通讯？
-/// 13.应该先进入主界面然后弹出串口设置界面，现在是先出现串口设置界面，然后才出现的主界面
-/// 14.软件运行时间的显示还没有正确设计
+/// 11.串口设置之后要更新状态栏，串口设置之后应该也要验证串口的可用性（现在还会存在打开已被占用并打开的串口，这时候会出错，已解决，每次设置前先关闭串口），
+/// 12.通讯失败后Timer1关闭后，如何检测并自动连接串口通讯？(加入Timer2，已解决)
+/// 13.应该先进入主界面然后弹出串口设置界面，现在是先出现串口设置界面，然后才出现的主界面(没有改，先不改吧，也行)
+/// 14.软件运行时间的显示还没有正确设计（已解决）
 /// </summary>
 namespace TXR1012_GUI
 {
@@ -37,7 +37,6 @@ namespace TXR1012_GUI
         public static Byte SlaveAddress;
         public static DateTime StartDateTime;
         public static DateTime HVStartDataTime;
-        //public static StatusStrip statusStrip1 = new StatusStrip();
 
 
 
@@ -46,6 +45,7 @@ namespace TXR1012_GUI
             InitializeComponent();
             Init();
             timer1.Start();
+            timer3.Start();
         }
         private void Init()
         {
@@ -53,8 +53,9 @@ namespace TXR1012_GUI
 
             //初始化串口
 
-                FrmCOMSet frmComSet = new FrmCOMSet();
-                frmComSet.ShowDialog();
+
+            FrmCOMSet frmComSet = new FrmCOMSet();
+            frmComSet.ShowDialog();
             StartDateTime = DateTime.Now;
             //初始化电源参数信息，额定电压、电流等
             TXR1012.MaxFilLimit = 4F;
@@ -145,20 +146,7 @@ namespace TXR1012_GUI
 
             //初始化状态栏
             #region 初始化状态栏
-            if (MData.ComStateFlag)
-            {
-                toolStripStatusLabel_SlaveAddress.Text = "从机地址:" + SlaveAddress.ToString();
-                toolStripStatusLabel_ComNum.Text = "串口:" + myserialPort.PortName;
-                toolStripStatusLabel_BaudRate.Text = "波特率:" + myserialPort.BaudRate;
-                toolStripStatusLabel_RunTime.Text = DateDiff(DateTime.Now, StartDateTime);
-            }
-            else
-            {
-                toolStripStatusLabel_SlaveAddress.Text = "请正确设置通讯地址和端口号！";
-                toolStripStatusLabel_ComNum.Text = "";
-                toolStripStatusLabel_BaudRate.Text = "波特率:" + myserialPort.BaudRate;
-                toolStripStatusLabel_RunTime.Text = DateDiff(DateTime.Now,StartDateTime);
-            }
+            StatusStripDisplay();
             #endregion
 
             //初始化显示值
@@ -234,6 +222,26 @@ namespace TXR1012_GUI
             label_StateError.BackColor = Color.Gray;
         }
         /// <summary>
+        /// 状态栏显示
+        /// </summary>
+        public void StatusStripDisplay()
+        {
+            if (MData.ComStateFlag)
+            {
+                toolStripStatusLabel_SlaveAddress.Text = "从机地址:" + SlaveAddress.ToString();
+                toolStripStatusLabel_ComNum.Text = "串口:" + myserialPort.PortName;
+                toolStripStatusLabel_BaudRate.Text = "波特率:" + myserialPort.BaudRate;
+                toolStripStatusLabel_RunTime.Text = DateDiff(DateTime.Now, StartDateTime);
+            }
+            else
+            {
+                toolStripStatusLabel_SlaveAddress.Text = "请正确设置通讯地址和端口号！";
+                toolStripStatusLabel_ComNum.Text = "";
+                toolStripStatusLabel_BaudRate.Text = "波特率:" + myserialPort.BaudRate;
+                toolStripStatusLabel_RunTime.Text = DateDiff(DateTime.Now, StartDateTime);
+            }
+        }
+        /// <summary>
         /// 求时间差方法
         /// </summary>
         /// <param name="dateBegin">开始时间</param>
@@ -254,37 +262,63 @@ namespace TXR1012_GUI
             FrmCOMSet frmComSet = new FrmCOMSet();
             frmComSet.ShowDialog();
             MessageBox.Show("这里会被执行吗？结果好像是会的","？");//在这里更新状态栏、打开串口、开启定时器等
+            try
+            {
+                myserialPort.Open();
+                if (myserialPort.IsOpen)
+                {
+                    timer1.Start();
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("串口打开故障", "提示！");
+                //throw;
+            }
         }
-
+        private void tsmi_Exit_Click(object sender, EventArgs e)
+        {
+            DialogResult DR_Close= MessageBox.Show("确定要关闭软件吗？","提示",MessageBoxButtons.YesNoCancel);
+            if (DR_Close == DialogResult.Yes)
+            {
+                this.Close();
+            }
+            else
+            {
+                return;
+            }
+        }
+        private void tsmi_About_Click(object sender, EventArgs e)
+        {
+            FrmAbout frmAbout = new FrmAbout();
+            frmAbout.ShowDialog();
+        }
+        private void tsmi_Intruction_Click(object sender, EventArgs e)
+        {
+            FrmIntruction frmIntruction = new FrmIntruction();
+            frmIntruction.ShowDialog();
+        }
         #endregion
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            //try
-            //{
             MData.ReadAll(SlaveAddress,myserialPort);
             if (MData.ComStateFlag)
             {
                 NormalDisplay();
+                //StatusStripDisplay();
             }
-                //NormalDisplay();
-            //}
-            //catch (Exception)
-            //{
             else
             {
                 timer1.Stop();
                 myserialPort.Close();
                 progressBar1.Value = 0;
                 ErrorDisplay();
+                //StatusStripDisplay();
+                timer2.Start();//开启定时器2，定时尝试打开串口
                 MessageBox.Show("读取从机数据操作失败，请检查串口设置！", "提示！");   
             }
                
-            //    //throw;
-            //}
-            //timer1.Stop();
-            //return;
-            //显示刷新界面数据
 
             //通信状态指示条刷新
             if (progressBar1.Value == 100)
@@ -418,17 +452,17 @@ namespace TXR1012_GUI
                 MessageBox.Show("请输入正确的设定值", "提示！");
                 return;//一定要加这个，这样才能返回重新设置的界面
             }
-            //try
-            //{
-            //    MData.WritemASet(SlaveAddress, myserialPort);
-            //    trackBar_FilLimitSet.Value = (Int32)(MData.mASet * 10);
-            //}
-            //catch (Exception)
-            //{
-            //    MessageBox.Show("设定操作失败，请检查串口设置！", "提示！");
-            //    return;//一定要加这个，这样才能返回重新设置的界面
-            //    //throw;  
-            //}
+            try
+            {
+                MData.WriteFilLimitSet(SlaveAddress, myserialPort);
+                trackBar_FilLimitSet.Value = (Int32)(MData.FilLimitSet * 10);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("设定操作失败，请检查串口设置！", "提示！");
+                return;//一定要加这个，这样才能返回重新设置的界面
+                //throw;  
+            }
         }
         private void btn_OpenHV_Click(object sender, EventArgs e)
         {
@@ -624,5 +658,42 @@ namespace TXR1012_GUI
 
         #endregion
 
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            try
+            {
+                if (myserialPort.IsOpen)
+                {
+                    timer2.Stop();
+                }
+                else
+                {
+                    myserialPort.Open();
+                    if (myserialPort.IsOpen)
+                    {
+                        MData.ReadAll(SlaveAddress,myserialPort);
+                        if (MData.ComStateFlag)
+                        {
+                            timer1.Start();
+                        }
+                        else
+                        {
+                            myserialPort.Close();
+                        }
+                        
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                return;
+                //throw;
+            }
+        }
+
+        private void timer3_Tick(object sender, EventArgs e)
+        {
+            StatusStripDisplay();
+        }
     }
 }

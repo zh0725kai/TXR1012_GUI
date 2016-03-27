@@ -29,16 +29,17 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.端口ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuItem_PortsSet = new System.Windows.Forms.ToolStripMenuItem();
             this.cOM口设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.以太网设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.设置机型规格ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.帮助ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.关于AToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.使用说明IToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.退出QToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuItem_EthernetSet = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuItem_Set = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuItem_SetType = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuItem_Help = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuItem_About = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuItem_Instruction = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuItem_Exit = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel_SlaveAddress = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel_ComNum = new System.Windows.Forms.ToolStripStatusLabel();
@@ -97,6 +98,8 @@
             this.ovalShape_CloseHV = new Microsoft.VisualBasic.PowerPacks.OvalShape();
             this.ovalShape_OpenHV = new Microsoft.VisualBasic.PowerPacks.OvalShape();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.timer2 = new System.Windows.Forms.Timer(this.components);
+            this.timer3 = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.groupBox_kV.SuspendLayout();
@@ -113,10 +116,10 @@
             this.menuStrip1.BackColor = System.Drawing.Color.Beige;
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.端口ToolStripMenuItem,
-            this.设置ToolStripMenuItem,
-            this.帮助ToolStripMenuItem,
-            this.退出QToolStripMenuItem});
+            this.ToolStripMenuItem_PortsSet,
+            this.ToolStripMenuItem_Set,
+            this.ToolStripMenuItem_Help,
+            this.ToolStripMenuItem_Exit});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
@@ -124,14 +127,14 @@
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // 端口ToolStripMenuItem
+            // ToolStripMenuItem_PortsSet
             // 
-            this.端口ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ToolStripMenuItem_PortsSet.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.cOM口设置ToolStripMenuItem,
-            this.以太网设置ToolStripMenuItem});
-            this.端口ToolStripMenuItem.Name = "端口ToolStripMenuItem";
-            this.端口ToolStripMenuItem.Size = new System.Drawing.Size(59, 21);
-            this.端口ToolStripMenuItem.Text = "端口(&P)";
+            this.ToolStripMenuItem_EthernetSet});
+            this.ToolStripMenuItem_PortsSet.Name = "ToolStripMenuItem_PortsSet";
+            this.ToolStripMenuItem_PortsSet.Size = new System.Drawing.Size(59, 21);
+            this.ToolStripMenuItem_PortsSet.Text = "端口(&P)";
             // 
             // cOM口设置ToolStripMenuItem
             // 
@@ -140,53 +143,57 @@
             this.cOM口设置ToolStripMenuItem.Text = "COM口设置(&S)";
             this.cOM口设置ToolStripMenuItem.Click += new System.EventHandler(this.tsmi_COMSet_Click);
             // 
-            // 以太网设置ToolStripMenuItem
+            // ToolStripMenuItem_EthernetSet
             // 
-            this.以太网设置ToolStripMenuItem.Enabled = false;
-            this.以太网设置ToolStripMenuItem.Name = "以太网设置ToolStripMenuItem";
-            this.以太网设置ToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
-            this.以太网设置ToolStripMenuItem.Text = "以太网设置(&L)";
+            this.ToolStripMenuItem_EthernetSet.Enabled = false;
+            this.ToolStripMenuItem_EthernetSet.Name = "ToolStripMenuItem_EthernetSet";
+            this.ToolStripMenuItem_EthernetSet.Size = new System.Drawing.Size(157, 22);
+            this.ToolStripMenuItem_EthernetSet.Text = "以太网设置(&L)";
             // 
-            // 设置ToolStripMenuItem
+            // ToolStripMenuItem_Set
             // 
-            this.设置ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.设置机型规格ToolStripMenuItem});
-            this.设置ToolStripMenuItem.Name = "设置ToolStripMenuItem";
-            this.设置ToolStripMenuItem.Size = new System.Drawing.Size(59, 21);
-            this.设置ToolStripMenuItem.Text = "设置(&S)";
+            this.ToolStripMenuItem_Set.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ToolStripMenuItem_SetType});
+            this.ToolStripMenuItem_Set.Name = "ToolStripMenuItem_Set";
+            this.ToolStripMenuItem_Set.Size = new System.Drawing.Size(59, 21);
+            this.ToolStripMenuItem_Set.Text = "设置(&S)";
             // 
-            // 设置机型规格ToolStripMenuItem
+            // ToolStripMenuItem_SetType
             // 
-            this.设置机型规格ToolStripMenuItem.Name = "设置机型规格ToolStripMenuItem";
-            this.设置机型规格ToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
-            this.设置机型规格ToolStripMenuItem.Text = "设置机型规格(&T)";
+            this.ToolStripMenuItem_SetType.Enabled = false;
+            this.ToolStripMenuItem_SetType.Name = "ToolStripMenuItem_SetType";
+            this.ToolStripMenuItem_SetType.Size = new System.Drawing.Size(163, 22);
+            this.ToolStripMenuItem_SetType.Text = "设置机型规格(&T)";
             // 
-            // 帮助ToolStripMenuItem
+            // ToolStripMenuItem_Help
             // 
-            this.帮助ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.关于AToolStripMenuItem,
-            this.使用说明IToolStripMenuItem});
-            this.帮助ToolStripMenuItem.Name = "帮助ToolStripMenuItem";
-            this.帮助ToolStripMenuItem.Size = new System.Drawing.Size(61, 21);
-            this.帮助ToolStripMenuItem.Text = "帮助(&H)";
+            this.ToolStripMenuItem_Help.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ToolStripMenuItem_About,
+            this.ToolStripMenuItem_Instruction});
+            this.ToolStripMenuItem_Help.Name = "ToolStripMenuItem_Help";
+            this.ToolStripMenuItem_Help.Size = new System.Drawing.Size(61, 21);
+            this.ToolStripMenuItem_Help.Text = "帮助(&H)";
             // 
-            // 关于AToolStripMenuItem
+            // ToolStripMenuItem_About
             // 
-            this.关于AToolStripMenuItem.Name = "关于AToolStripMenuItem";
-            this.关于AToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.关于AToolStripMenuItem.Text = "关于(&A)";
+            this.ToolStripMenuItem_About.Name = "ToolStripMenuItem_About";
+            this.ToolStripMenuItem_About.Size = new System.Drawing.Size(152, 22);
+            this.ToolStripMenuItem_About.Text = "关于(&A)";
+            this.ToolStripMenuItem_About.Click += new System.EventHandler(this.tsmi_About_Click);
             // 
-            // 使用说明IToolStripMenuItem
+            // ToolStripMenuItem_Instruction
             // 
-            this.使用说明IToolStripMenuItem.Name = "使用说明IToolStripMenuItem";
-            this.使用说明IToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.使用说明IToolStripMenuItem.Text = "使用说明(&I)";
+            this.ToolStripMenuItem_Instruction.Name = "ToolStripMenuItem_Instruction";
+            this.ToolStripMenuItem_Instruction.Size = new System.Drawing.Size(152, 22);
+            this.ToolStripMenuItem_Instruction.Text = "使用说明(&I)";
+            this.ToolStripMenuItem_Instruction.Click += new System.EventHandler(this.tsmi_Intruction_Click);
             // 
-            // 退出QToolStripMenuItem
+            // ToolStripMenuItem_Exit
             // 
-            this.退出QToolStripMenuItem.Name = "退出QToolStripMenuItem";
-            this.退出QToolStripMenuItem.Size = new System.Drawing.Size(62, 21);
-            this.退出QToolStripMenuItem.Text = "退出(&Q)";
+            this.ToolStripMenuItem_Exit.Name = "ToolStripMenuItem_Exit";
+            this.ToolStripMenuItem_Exit.Size = new System.Drawing.Size(62, 21);
+            this.ToolStripMenuItem_Exit.Text = "关闭(&Q)";
+            this.ToolStripMenuItem_Exit.Click += new System.EventHandler(this.tsmi_Exit_Click);
             // 
             // statusStrip1
             // 
@@ -244,9 +251,9 @@
             this.groupBox_kV.Controls.Add(this.label2);
             this.groupBox_kV.Controls.Add(this.label_kV);
             this.groupBox_kV.Location = new System.Drawing.Point(14, 36);
-            this.groupBox_kV.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox_kV.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox_kV.Name = "groupBox_kV";
-            this.groupBox_kV.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox_kV.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox_kV.Size = new System.Drawing.Size(215, 318);
             this.groupBox_kV.TabIndex = 3;
             this.groupBox_kV.TabStop = false;
@@ -255,7 +262,7 @@
             // txt_kVSet
             // 
             this.txt_kVSet.Location = new System.Drawing.Point(76, 255);
-            this.txt_kVSet.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txt_kVSet.Margin = new System.Windows.Forms.Padding(2);
             this.txt_kVSet.Name = "txt_kVSet";
             this.txt_kVSet.Size = new System.Drawing.Size(63, 21);
             this.txt_kVSet.TabIndex = 5;
@@ -371,7 +378,7 @@
             // btn_kVSet
             // 
             this.btn_kVSet.Location = new System.Drawing.Point(76, 280);
-            this.btn_kVSet.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_kVSet.Margin = new System.Windows.Forms.Padding(2);
             this.btn_kVSet.Name = "btn_kVSet";
             this.btn_kVSet.Size = new System.Drawing.Size(62, 27);
             this.btn_kVSet.TabIndex = 6;
@@ -413,9 +420,9 @@
             this.groupBox_mA.Controls.Add(this.label3);
             this.groupBox_mA.Controls.Add(this.label_mA);
             this.groupBox_mA.Location = new System.Drawing.Point(245, 36);
-            this.groupBox_mA.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox_mA.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox_mA.Name = "groupBox_mA";
-            this.groupBox_mA.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox_mA.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox_mA.Size = new System.Drawing.Size(215, 318);
             this.groupBox_mA.TabIndex = 3;
             this.groupBox_mA.TabStop = false;
@@ -424,7 +431,7 @@
             // txt_mASet
             // 
             this.txt_mASet.Location = new System.Drawing.Point(77, 255);
-            this.txt_mASet.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txt_mASet.Margin = new System.Windows.Forms.Padding(2);
             this.txt_mASet.Name = "txt_mASet";
             this.txt_mASet.Size = new System.Drawing.Size(63, 21);
             this.txt_mASet.TabIndex = 5;
@@ -434,7 +441,7 @@
             // 
             this.btn_mASet.BackColor = System.Drawing.Color.Transparent;
             this.btn_mASet.Location = new System.Drawing.Point(77, 280);
-            this.btn_mASet.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_mASet.Margin = new System.Windows.Forms.Padding(2);
             this.btn_mASet.Name = "btn_mASet";
             this.btn_mASet.Size = new System.Drawing.Size(62, 27);
             this.btn_mASet.TabIndex = 6;
@@ -583,9 +590,9 @@
             this.groupBox_FilPreHeat.Controls.Add(this.label8);
             this.groupBox_FilPreHeat.Controls.Add(this.label6);
             this.groupBox_FilPreHeat.Location = new System.Drawing.Point(14, 359);
-            this.groupBox_FilPreHeat.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox_FilPreHeat.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox_FilPreHeat.Name = "groupBox_FilPreHeat";
-            this.groupBox_FilPreHeat.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox_FilPreHeat.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox_FilPreHeat.Size = new System.Drawing.Size(309, 80);
             this.groupBox_FilPreHeat.TabIndex = 4;
             this.groupBox_FilPreHeat.TabStop = false;
@@ -594,7 +601,7 @@
             // txt_FilPreHeat
             // 
             this.txt_FilPreHeat.Location = new System.Drawing.Point(149, 26);
-            this.txt_FilPreHeat.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txt_FilPreHeat.Margin = new System.Windows.Forms.Padding(2);
             this.txt_FilPreHeat.Name = "txt_FilPreHeat";
             this.txt_FilPreHeat.Size = new System.Drawing.Size(39, 21);
             this.txt_FilPreHeat.TabIndex = 5;
@@ -618,7 +625,7 @@
             // btn_FilPreHeatSet
             // 
             this.btn_FilPreHeatSet.Location = new System.Drawing.Point(212, 22);
-            this.btn_FilPreHeatSet.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_FilPreHeatSet.Margin = new System.Windows.Forms.Padding(2);
             this.btn_FilPreHeatSet.Name = "btn_FilPreHeatSet";
             this.btn_FilPreHeatSet.Size = new System.Drawing.Size(87, 27);
             this.btn_FilPreHeatSet.TabIndex = 6;
@@ -674,9 +681,9 @@
             this.groupBox1.Controls.Add(this.btn_FilLimitSet);
             this.groupBox1.Controls.Add(this.label12);
             this.groupBox1.Location = new System.Drawing.Point(14, 448);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox1.Size = new System.Drawing.Size(305, 73);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
@@ -725,7 +732,7 @@
             // txt_FilLimitSet
             // 
             this.txt_FilLimitSet.Location = new System.Drawing.Point(149, 22);
-            this.txt_FilLimitSet.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txt_FilLimitSet.Margin = new System.Windows.Forms.Padding(2);
             this.txt_FilLimitSet.Name = "txt_FilLimitSet";
             this.txt_FilLimitSet.Size = new System.Drawing.Size(39, 21);
             this.txt_FilLimitSet.TabIndex = 5;
@@ -747,18 +754,18 @@
             // trackBar_FilLimitSet
             // 
             this.trackBar_FilLimitSet.Location = new System.Drawing.Point(1, 23);
-            this.trackBar_FilLimitSet.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.trackBar_FilLimitSet.Margin = new System.Windows.Forms.Padding(2);
             this.trackBar_FilLimitSet.Maximum = 40;
             this.trackBar_FilLimitSet.Name = "trackBar_FilLimitSet";
             this.trackBar_FilLimitSet.Size = new System.Drawing.Size(134, 45);
             this.trackBar_FilLimitSet.TabIndex = 7;
-            this.trackBar_FilLimitSet.TickFrequency = 10;
+            this.trackBar_FilLimitSet.TickFrequency = 5;
             this.trackBar_FilLimitSet.Scroll += new System.EventHandler(this.trackBar_FilLimitSet_Scroll);
             // 
             // btn_FilLimitSet
             // 
             this.btn_FilLimitSet.Location = new System.Drawing.Point(212, 19);
-            this.btn_FilLimitSet.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_FilLimitSet.Margin = new System.Windows.Forms.Padding(2);
             this.btn_FilLimitSet.Name = "btn_FilLimitSet";
             this.btn_FilLimitSet.Size = new System.Drawing.Size(87, 27);
             this.btn_FilLimitSet.TabIndex = 6;
@@ -793,9 +800,9 @@
             this.groupBox2.Controls.Add(this.label_Temp);
             this.groupBox2.Controls.Add(this.label_Power);
             this.groupBox2.Location = new System.Drawing.Point(326, 359);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox2.Size = new System.Drawing.Size(135, 163);
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
@@ -804,7 +811,7 @@
             // progressBar1
             // 
             this.progressBar1.Location = new System.Drawing.Point(64, 138);
-            this.progressBar1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.progressBar1.Margin = new System.Windows.Forms.Padding(2);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(64, 11);
             this.progressBar1.TabIndex = 5;
@@ -949,9 +956,9 @@
             this.groupBox3.Controls.Add(this.btn_CloseHV);
             this.groupBox3.Controls.Add(this.shapeContainer1);
             this.groupBox3.Location = new System.Drawing.Point(475, 36);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox3.Size = new System.Drawing.Size(98, 486);
             this.groupBox3.TabIndex = 6;
             this.groupBox3.TabStop = false;
@@ -960,7 +967,7 @@
             // button7
             // 
             this.button7.Location = new System.Drawing.Point(16, 457);
-            this.button7.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button7.Margin = new System.Windows.Forms.Padding(2);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(66, 20);
             this.button7.TabIndex = 0;
@@ -970,7 +977,7 @@
             // button6
             // 
             this.button6.Location = new System.Drawing.Point(16, 433);
-            this.button6.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button6.Margin = new System.Windows.Forms.Padding(2);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(66, 20);
             this.button6.TabIndex = 0;
@@ -981,7 +988,7 @@
             // 
             this.btn_OpenHV.BackColor = System.Drawing.Color.Tomato;
             this.btn_OpenHV.Location = new System.Drawing.Point(23, 48);
-            this.btn_OpenHV.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_OpenHV.Margin = new System.Windows.Forms.Padding(2);
             this.btn_OpenHV.Name = "btn_OpenHV";
             this.btn_OpenHV.Size = new System.Drawing.Size(57, 32);
             this.btn_OpenHV.TabIndex = 0;
@@ -992,7 +999,7 @@
             // button5
             // 
             this.button5.Location = new System.Drawing.Point(16, 408);
-            this.button5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button5.Margin = new System.Windows.Forms.Padding(2);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(66, 20);
             this.button5.TabIndex = 0;
@@ -1003,7 +1010,7 @@
             // 
             this.btn_CloseHV.BackColor = System.Drawing.Color.Lime;
             this.btn_CloseHV.Location = new System.Drawing.Point(21, 126);
-            this.btn_CloseHV.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_CloseHV.Margin = new System.Windows.Forms.Padding(2);
             this.btn_CloseHV.Name = "btn_CloseHV";
             this.btn_CloseHV.Size = new System.Drawing.Size(59, 32);
             this.btn_CloseHV.TabIndex = 0;
@@ -1046,10 +1053,20 @@
             this.timer1.Interval = 500;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // timer2
+            // 
+            this.timer2.Interval = 5000;
+            this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
+            // 
+            // timer3
+            // 
+            this.timer3.Interval = 1000;
+            this.timer3.Tick += new System.EventHandler(this.timer3_Tick);
+            // 
             // FrmMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoSize = true;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(584, 562);
@@ -1061,9 +1078,13 @@
             this.Controls.Add(this.groupBox_kV);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
+            this.MaximizeBox = false;
             this.Name = "FrmMain";
+            this.ShowIcon = false;
             this.Text = "[大连泰思曼科技有限公司]TXR1012上位机";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmMain_FormClosed);
             this.menuStrip1.ResumeLayout(false);
@@ -1090,12 +1111,12 @@
         #endregion
 
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem 端口ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItem_PortsSet;
         private System.Windows.Forms.ToolStripMenuItem cOM口设置ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 以太网设置ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 设置ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 帮助ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 退出QToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItem_EthernetSet;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItem_Set;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItem_Help;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItem_Exit;
         private System.Windows.Forms.StatusStrip statusStrip1;
         //public static System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.GroupBox groupBox_kV;
@@ -1148,9 +1169,9 @@
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.ToolStripMenuItem 设置机型规格ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 关于AToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 使用说明IToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItem_SetType;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItem_About;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItem_Instruction;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel_SlaveAddress;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel_ComNum;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel_BaudRate;
@@ -1158,6 +1179,8 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel_RunTime;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Timer timer2;
+        private System.Windows.Forms.Timer timer3;
     }
 }
 

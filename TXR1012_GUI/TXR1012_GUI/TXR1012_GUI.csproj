@@ -68,11 +68,23 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FrmAbout.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmAbout.Designer.cs">
+      <DependentUpon>FrmAbout.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmCOMSet.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FrmCOMSet.Designer.cs">
       <DependentUpon>FrmCOMSet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmIntruction.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmIntruction.Designer.cs">
+      <DependentUpon>FrmIntruction.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmMain.cs">
       <SubType>Form</SubType>
@@ -84,8 +96,14 @@
     <Compile Include="PowerSupplyTypeCs.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FrmAbout.resx">
+      <DependentUpon>FrmAbout.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmCOMSet.resx">
       <DependentUpon>FrmCOMSet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmIntruction.resx">
+      <DependentUpon>FrmIntruction.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>
